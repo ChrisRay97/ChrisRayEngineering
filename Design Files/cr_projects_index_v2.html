@@ -1,0 +1,232 @@
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.frame{background:#0F1012;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.09);}
+.browser-bar{background:#141618;border-bottom:1px solid rgba(255,255,255,0.07);padding:10px 16px;display:flex;align-items:center;gap:10px;}
+.b-dots{display:flex;gap:5px;}
+.b-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.1);}
+.b-url{flex:1;background:rgba(255,255,255,0.05);border-radius:4px;padding:4px 12px;font-family:'Barlow Condensed',sans-serif;font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:0.04em;text-align:center;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:58px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.cr-mark{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:20px;color:#C8922A;letter-spacing:0.12em;}
+.nav-links{display:flex;gap:32px;}
+.nav-link{font-family:'Barlow',sans-serif;font-size:13px;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:0.04em;text-decoration:none;}
+.nav-link.active{color:rgba(255,255,255,0.88);}
+.nav-cta{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#C8922A;border:1px solid rgba(200,146,42,0.45);padding:6px 18px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;}
+
+.page-header{padding:40px 40px 0;}
+.page-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;color:#C8922A;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.eyebrow-line{width:24px;height:1px;background:#C8922A;opacity:0.6;}
+.page-title{font-family:'IBM Plex Sans',sans-serif;font-size:32px;font-weight:300;color:#E8E6DF;letter-spacing:-0.01em;margin-bottom:8px;}
+.page-sub{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.35);letter-spacing:0.02em;}
+
+.controls{border-bottom:1px solid rgba(255,255,255,0.07);}
+.ctrl-row-1{padding:20px 40px 14px;display:flex;align-items:center;gap:12px;}
+.search-wrap{flex:1;position:relative;display:flex;align-items:center;}
+.search-icon{position:absolute;left:12px;color:rgba(255,255,255,0.22);font-size:15px;}
+.search-input{width:100%;background:#141618;border:1px solid rgba(255,255,255,0.09);border-radius:3px;padding:8px 12px 8px 34px;font-family:'Barlow',sans-serif;font-size:13px;color:rgba(255,255,255,0.6);outline:none;letter-spacing:0.02em;}
+.search-input::placeholder{color:rgba(255,255,255,0.18);}
+.sort-wrap{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.sort-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:500;color:rgba(255,255,255,0.25);letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;}
+.sort-select{background:#141618;border:1px solid rgba(255,255,255,0.09);border-radius:3px;padding:7px 10px;font-family:'Barlow Condensed',sans-serif;font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.06em;outline:none;}
+
+.ctrl-row-2{padding:0 40px 16px;display:flex;align-items:center;gap:20px;}
+.filter-group{display:flex;align-items:center;gap:6px;}
+.filter-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:500;color:rgba(255,255,255,0.22);letter-spacing:0.14em;text-transform:uppercase;margin-right:2px;}
+.ftag{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:500;padding:4px 11px;border-radius:3px;letter-spacing:0.09em;text-transform:uppercase;cursor:pointer;border:1px solid transparent;}
+.ftag-elec{background:rgba(141,184,74,0.12);color:#8DB84A;border-color:rgba(141,184,74,0.3);}
+.ftag-mech{background:rgba(217,95,43,0.07);color:rgba(217,95,43,0.4);border-color:rgba(217,95,43,0.13);}
+.ftag-soft{background:rgba(61,175,184,0.07);color:rgba(61,175,184,0.4);border-color:rgba(61,175,184,0.13);}
+.ftag-active{background:rgba(141,184,74,0.1);color:#8DB84A;border-color:rgba(141,184,74,0.25);}
+.ftag-complete{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.28);border-color:rgba(255,255,255,0.08);}
+.ctrl-divider{width:1px;height:22px;background:rgba(255,255,255,0.07);}
+
+.results-meta{padding:14px 40px 0;display:flex;align-items:center;gap:8px;}
+.results-count{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:rgba(255,255,255,0.22);letter-spacing:0.08em;text-transform:uppercase;}
+.active-chip{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:2px;}
+.chip-elec{color:#8DB84A;background:rgba(141,184,74,0.1);border:1px solid rgba(141,184,74,0.2);}
+.chip-status{color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);}
+
+.grid{padding:20px 40px 40px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.pcard{background:#141618;border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:20px;display:flex;flex-direction:column;}
+.pcard-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
+.pcard-status{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:3px 8px;border-radius:2px;}
+.s-active{background:rgba(141,184,74,0.1);color:#8DB84A;border:1px solid rgba(141,184,74,0.2);}
+.s-complete{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.28);border:1px solid rgba(255,255,255,0.08);}
+.pcard-arrow{font-size:13px;color:rgba(255,255,255,0.15);}
+.pcard-title{font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:400;color:rgba(255,255,255,0.88);line-height:1.35;margin-bottom:8px;}
+.pcard-desc{font-family:'Barlow',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.65;flex:1;margin-bottom:16px;}
+.pcard-footer{display:flex;align-items:flex-end;justify-content:space-between;}
+.pcard-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.dtag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:500;padding:2px 8px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;}
+.pcard-date{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:0.05em;white-space:nowrap;}
+
+.consult-bar{padding:16px 40px;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.012);}
+.c-text{font-family:'Barlow',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.32);letter-spacing:0.025em;}
+.c-link{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;color:#C8922A;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;}
+</style>
+
+<div class="frame">
+  <div class="browser-bar">
+    <div class="b-dots"><div class="b-dot"></div><div class="b-dot"></div><div class="b-dot"></div></div>
+    <div class="b-url">chrisrayengineering.com/projects</div>
+  </div>
+
+  <nav class="nav">
+    <div class="cr-mark">CR</div>
+    <div class="nav-links">
+      <a class="nav-link" href="#">Catalog</a>
+      <a class="nav-link active" href="#">Projects</a>
+      <a class="nav-link" href="#">About</a>
+    </div>
+    <a class="nav-cta" href="#">Contact</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-eyebrow"><span class="eyebrow-line"></span>ChrisRayEngineering</div>
+    <div class="page-title">Projects</div>
+    <div class="page-sub">A working archive of completed and ongoing engineering work across all domains.</div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row-1">
+      <div class="search-wrap">
+        <i class="ti ti-search search-icon" aria-hidden="true"></i>
+        <input class="search-input" type="text" placeholder="Search projects...">
+      </div>
+      <div class="sort-wrap">
+        <span class="sort-label">Sort by</span>
+        <select class="sort-select">
+          <option>Newest</option>
+          <option>Recently updated</option>
+          <option>Most active</option>
+          <option>A — Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="ctrl-row-2">
+      <div class="filter-group">
+        <span class="filter-label">Domain</span>
+        <span class="ftag ftag-elec">Electrical</span>
+        <span class="ftag ftag-mech">Mechanical</span>
+        <span class="ftag ftag-soft">Software</span>
+      </div>
+      <div class="ctrl-divider"></div>
+      <div class="filter-group">
+        <span class="filter-label">Status</span>
+        <span class="ftag ftag-active">Active</span>
+        <span class="ftag ftag-complete">Complete</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-meta">
+    <span class="results-count">Showing 6 of 14 projects</span>
+    <span class="active-chip chip-elec">Electrical ×</span>
+    <span class="active-chip chip-status">Active ×</span>
+  </div>
+
+  <div class="grid">
+
+    <div class="pcard">
+      <div class="pcard-top">
+        <span class="pcard-status s-active">Active</span>
+        <span class="pcard-arrow">→</span>
+      </div>
+      <div class="pcard-title">Keystone Dev Board</div>
+      <div class="pcard-desc">Custom microcontroller platform for industrial sensor interfacing and field deployment.</div>
+      <div class="pcard-footer">
+        <div class="pcard-tags">
+          <span class="dtag" style="background:rgba(141,184,74,0.12);color:#8DB84A;border:1px solid rgba(141,184,74,0.25);">Electrical</span>
+          <span class="dtag" style="background:rgba(217,95,43,0.12);color:#D95F2B;border:1px solid rgba(217,95,43,0.25);">Mechanical</span>
+        </div>
+        <span class="pcard-date">May 2026</span>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-top">
+        <span class="pcard-status s-active">Active</span>
+        <span class="pcard-arrow">→</span>
+      </div>
+      <div class="pcard-title">Modular Relay Controller</div>
+      <div class="pcard-desc">DIN-rail mounted relay expansion module with I2C addressing for scalable automation panels.</div>
+      <div class="pcard-footer">
+        <div class="pcard-tags">
+          <span class="dtag" style="background:rgba(141,184,74,0.12);color:#8DB84A;border:1px solid rgba(141,184,74,0.25);">Electrical</span>
+        </div>
+        <span class="pcard-date">Apr 2026</span>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-top">
+        <span class="pcard-status s-active">Active</span>
+        <span class="pcard-arrow">→</span>
+      </div>
+      <div class="pcard-title">4-Axis Robot Arm</div>
+      <div class="pcard-desc">Open-source desktop manipulator with custom servo controllers and a Python motion planning API.</div>
+      <div class="pcard-footer">
+        <div class="pcard-tags">
+          <span class="dtag" style="background:rgba(141,184,74,0.12);color:#8DB84A;border:1px solid rgba(141,184,74,0.25);">Electrical</span>
+          <span class="dtag" style="background:rgba(217,95,43,0.12);color:#D95F2B;border:1px solid rgba(217,95,43,0.25);">Mechanical</span>
+          <span class="dtag" style="background:rgba(61,175,184,0.12);color:#3DAFB8;border:1px solid rgba(61,175,184,0.25);">Software</span>
+        </div>
+        <span class="pcard-date">Mar 2026</span>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-top">
+        <span class="pcard-status s-active">Active</span>
+        <span class="pcard-arrow">→</span>
+      </div>
+      <div class="pcard-title">Wireless Sensor Node</div>
+      <div class="pcard-desc">Low-power LoRa sensor node for remote environmental monitoring with a 2-year battery target.</div>
+      <div class="pcard-footer">
+        <div class="pcard-tags">
+          <span class="dtag" style="background:rgba(141,184,74,0.12);color:#8DB84A;border:1px solid rgba(141,184,74,0.25);">Electrical</span>
+          <span class="dtag" style="background:rgba(61,175,184,0.12);color:#3DAFB8;border:1px solid rgba(61,175,184,0.25);">Software</span>
+        </div>
+        <span class="pcard-date">Feb 2026</span>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-top">
+        <span class="pcard-status s-active">Active</span>
+        <span class="pcard-arrow">→</span>
+      </div>
+      <div class="pcard-title">Power Distribution Board</div>
+      <div class="pcard-desc">12-channel fused distribution board with per-channel current monitoring over CAN bus.</div>
+      <div class="pcard-footer">
+        <div class="pcard-tags">
+          <span class="dtag" style="background:rgba(141,184,74,0.12);color:#8DB84A;border:1px solid rgba(141,184,74,0.25);">Electrical</span>
+        </div>
+        <span class="pcard-date">Jan 2026</span>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-top">
+        <span class="pcard-status s-active">Active</span>
+        <span class="pcard-arrow">→</span>
+      </div>
+      <div class="pcard-title">Thermal Camera Module</div>
+      <div class="pcard-desc">MLX90640-based thermal imaging breakout with USB-C output and onboard calibration storage.</div>
+      <div class="pcard-footer">
+        <div class="pcard-tags">
+          <span class="dtag" style="background:rgba(141,184,74,0.12);color:#8DB84A;border:1px solid rgba(141,184,74,0.25);">Electrical</span>
+          <span class="dtag" style="background:rgba(61,175,184,0.12);color:#3DAFB8;border:1px solid rgba(61,175,184,0.25);">Software</span>
+        </div>
+        <span class="pcard-date">Dec 2025</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="consult-bar">
+    <span class="c-text">Available for contract and consulting engagements across all engineering domains</span>
+    <a class="c-link" href="#">Get in touch →</a>
+  </div>
+</div>

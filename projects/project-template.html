@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Project Name] — CR Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="cr-mark" href="../index.html">CR</a>
+    <div class="nav-links">
+      <a class="nav-link" href="../catalog/index.html">Catalog</a>
+      <a class="nav-link active" href="index.html">Projects</a>
+      <a class="nav-link" href="../about.html">About</a>
+    </div>
+    <a class="nav-cta" href="../contact.html">Contact</a>
+  </nav>
+
+  <!-- ── Breadcrumb ────────────────────────────────────────── -->
+  <div class="breadcrumb">
+    <a class="bc-link" href="index.html">Projects</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-current">[Project Name]</span>
+  </div>
+
+  <!-- ── Project header ────────────────────────────────────── -->
+  <div class="project-header">
+    <div class="header-top">
+      <!--
+        Status badge: use pstatus-active or pstatus-complete
+        (The base .pstatus class uses gold — fine for in-progress/active)
+      -->
+      <span class="pstatus pstatus-active">Active</span>
+      <!-- <span class="pstatus pstatus-complete">Complete</span> -->
+      <span class="dtag dtag-elec">Electrical</span>
+      <span class="dtag dtag-mech">Mechanical</span>
+      <!-- Add or remove domain tags as needed -->
+    </div>
+    <div class="project-title">[Project Name]</div>
+    <div class="header-meta">
+      <div class="meta-item">
+        <span class="meta-label">Created</span>
+        <span class="meta-value">[Mon Year]</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Last updated</span>
+        <span class="meta-value">[Mon Year]</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Version</span>
+        <span class="meta-value">v1.0.0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── External links ────────────────────────────────────── -->
+  <!-- Remove any links that don't apply to this project -->
+  <div class="ext-links">
+    <span class="ext-label">External</span>
+    <a class="ext-link" href="#" target="_blank">
+      <i class="ti ti-brand-github" aria-hidden="true"></i>
+      <span>GitHub</span>
+      <span class="ext-arrow">↗</span>
+    </a>
+    <a class="ext-link" href="#" target="_blank">
+      <i class="ti ti-brand-youtube" aria-hidden="true"></i>
+      <span>YouTube</span>
+      <span class="ext-arrow">↗</span>
+    </a>
+    <a class="ext-link" href="#" target="_blank">
+      <i class="ti ti-world" aria-hidden="true"></i>
+      <span>Docs</span>
+      <span class="ext-arrow">↗</span>
+    </a>
+  </div>
+
+  <!-- ── Overview / writeup ────────────────────────────────── -->
+  <div class="section">
+    <div class="section-heading">Overview</div>
+    <div class="writeup">
+      <p>[Opening paragraph: what the project is, what problem it solves, and what makes the approach interesting or distinctive.]</p>
+
+      <h3>Background</h3>
+      <p>[Context and motivation: why did you start this project? What existed before it, and what was missing?]</p>
+
+      <!-- Optional: inline diagram/image placeholder -->
+      <div class="inline-img">
+        <i class="ti ti-vector-triangle" aria-hidden="true"></i>
+        <span>[Description of diagram or image]</span>
+      </div>
+      <p class="inline-img-caption">Fig. 1 — [Caption for the figure above]</p>
+
+      <h3>[Section heading]</h3>
+      <p>[Detailed writeup of a specific aspect — design decisions, technical implementation, challenges overcome, etc.]</p>
+
+      <h3>[Section heading]</h3>
+      <p>[Another section — firmware, software, mechanical design, test results, etc.]</p>
+    </div>
+  </div>
+
+  <!-- ── Image gallery ─────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-heading">Images</div>
+    <div class="gallery-grid" id="gallery">
+      <!-- Replace placeholder cells with real images -->
+      <!-- <div class="gallery-cell"><img src="../assets/img/[project]/photo1.jpg" alt="[desc]"></div> -->
+      <div class="gallery-cell"><i class="ti ti-photo" aria-hidden="true"></i><span>[View label]</span></div>
+      <div class="gallery-cell"><i class="ti ti-photo" aria-hidden="true"></i><span>[View label]</span></div>
+      <div class="gallery-cell"><i class="ti ti-photo" aria-hidden="true"></i><span>[View label]</span></div>
+      <div class="gallery-cell"><i class="ti ti-photo" aria-hidden="true"></i><span>[View label]</span></div>
+      <div class="gallery-cell"><i class="ti ti-photo" aria-hidden="true"></i><span>[View label]</span></div>
+      <div class="gallery-cell"><i class="ti ti-photo" aria-hidden="true"></i><span>[View label]</span></div>
+    </div>
+  </div>
+
+  <!-- ── Files & downloads ─────────────────────────────────── -->
+  <div class="section">
+    <div class="section-heading">Files &amp; Downloads</div>
+    <div class="files-list">
+
+      <div class="file-row">
+        <span class="file-type ft-pdf">PDF</span>
+        <span class="file-name">[project-name]-whitepaper.pdf</span>
+        <div class="file-meta">
+          <span class="file-ver">v1.0</span>
+          <span class="file-date">[Mon Year]</span>
+          <a href="#" download><i class="ti ti-download file-dl" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="file-row">
+        <span class="file-type ft-kicad">KiCad</span>
+        <span class="file-name">[project-name]-schematics.zip</span>
+        <div class="file-meta">
+          <span class="file-ver">v1.0</span>
+          <span class="file-date">[Mon Year]</span>
+          <a href="#" download><i class="ti ti-download file-dl" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="file-row">
+        <span class="file-type ft-stl">STL</span>
+        <span class="file-name">[project-name]-enclosure.stl</span>
+        <div class="file-meta">
+          <span class="file-ver">v1.0</span>
+          <span class="file-date">[Mon Year]</span>
+          <a href="#" download><i class="ti ti-download file-dl" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="file-row">
+        <span class="file-type ft-zip">ZIP</span>
+        <span class="file-name">[project-name]-firmware.zip</span>
+        <div class="file-meta">
+          <span class="file-ver">v1.0</span>
+          <span class="file-date">[Mon Year]</span>
+          <a href="#" download><i class="ti ti-download file-dl" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Changelog ─────────────────────────────────────────── -->
+  <div class="section pb-0">
+    <div class="section-heading">Changelog</div>
+    <div class="changelog-list">
+
+      <!-- Most recent entry first -->
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">[YYYY-MM-DD]</span>
+          <!--
+            Tag classes: cl-hardware, cl-software, cl-docs, cl-mech
+            Use whichever best describes the type of change.
+          -->
+          <span class="cl-tag cl-hardware">Hardware</span>
+        </div>
+        <span class="cl-msg">[Description of what changed in this revision.]</span>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">[YYYY-MM-DD]</span>
+          <span class="cl-tag cl-software">Software</span>
+        </div>
+        <span class="cl-msg">[Description of what changed in this revision.]</span>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">[YYYY-MM-DD]</span>
+          <span class="cl-tag cl-docs">Docs</span>
+        </div>
+        <span class="cl-msg">[Description of what changed in this revision.]</span>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">[YYYY-MM-DD]</span>
+          <span class="cl-tag cl-hardware">Hardware</span>
+        </div>
+        <span class="cl-msg">Initial project publish.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="consult-bar">
+    <span class="c-text">Available for contract and consulting engagements</span>
+    <a class="c-link" href="../contact.html">Get in touch →</a>
+  </div>
+
+</body>
+</html>

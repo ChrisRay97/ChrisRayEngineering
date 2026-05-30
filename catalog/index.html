@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalog — CR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="cr-mark" href="../index.html">CR</a>
+    <div class="nav-links">
+      <a class="nav-link active" href="index.html">Catalog</a>
+      <a class="nav-link" href="../projects/index.html">Projects</a>
+      <a class="nav-link" href="../about.html">About</a>
+    </div>
+    <a class="nav-cta" href="../contact.html">Contact</a>
+  </nav>
+
+  <!-- ── Page header ───────────────────────────────────────── -->
+  <div class="page-header">
+    <div class="page-eyebrow"><span class="eyebrow-line"></span>[Your Brand Name]</div>
+    <div class="page-title">Catalog</div>
+    <div class="page-sub">[Short description of your product catalog — hardware, software, machined parts, etc.]</div>
+  </div>
+
+  <!-- ── Search & filter controls ─────────────────────────── -->
+  <div class="controls" style="margin-top: 20px;">
+    <div class="ctrl-row-1">
+      <div class="search-wrap">
+        <i class="ti ti-search search-icon" aria-hidden="true"></i>
+        <input class="search-input" type="text" id="catalog-search" placeholder="Search catalog..." oninput="filterCatalog()">
+      </div>
+      <div class="sort-wrap">
+        <span class="sort-label">Sort by</span>
+        <select class="sort-select" id="catalog-sort" onchange="filterCatalog()">
+          <option value="newest">Newest</option>
+          <option value="az">A — Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="ctrl-row-2">
+      <div class="filter-group">
+        <span class="filter-label">Domain</span>
+        <span class="ftag ftag-elec-off" data-filter="domain" data-value="elec" onclick="toggleFilter(this)">Electrical</span>
+        <span class="ftag ftag-mech-off" data-filter="domain" data-value="mech" onclick="toggleFilter(this)">Mechanical</span>
+        <span class="ftag ftag-soft-off" data-filter="domain" data-value="soft" onclick="toggleFilter(this)">Software</span>
+      </div>
+      <div class="ctrl-divider"></div>
+      <div class="filter-group">
+        <span class="filter-label">Tier</span>
+        <span class="ftag ftag-hobbyist-off" data-filter="tier" data-value="hobbyist" onclick="toggleFilter(this)">Hobbyist</span>
+        <span class="ftag ftag-commercial-off" data-filter="tier" data-value="commercial" onclick="toggleFilter(this)">Commercial</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-meta">
+    <span class="results-count" id="results-count">Showing all products</span>
+  </div>
+
+  <!-- ── Product grid ──────────────────────────────────────── -->
+  <!--
+    Each .pcard needs:
+      data-domains="elec mech soft"   (space-separated, include all that apply)
+      data-tier="hobbyist"            (or "commercial")
+      data-name="[product name]"      (used for search + A-Z sort)
+      data-date="YYYYMM"              (used for newest sort)
+
+    Link each card to its detail page.
+  -->
+  <div class="grid" id="catalog-grid">
+
+    <a class="pcard" href="product-template.html"
+       data-domains="mech" data-tier="hobbyist"
+       data-name="[Product Name A]" data-date="202601">
+      <div class="pcard-top">
+        <div class="pcard-tags">
+          <span class="dtag dtag-mech">Mechanical</span>
+        </div>
+        <span class="pcard-arrow">→</span>
+      </div>
+      <div class="pcard-img">
+        <i class="ti ti-photo" aria-hidden="true"></i>
+        <span>Product image</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-title">[Product Name A]</div>
+        <div class="pcard-desc">[One-sentence description of what this product is and who it's for.]</div>
+      </div>
+    </a>
+
+    <a class="pcard" href="product-template.html"
+       data-domains="elec soft" data-tier="commercial"
+       data-name="[Product Name B]" data-date="202603">
+      <div class="pcard-top">
+        <div class="pcard-tags">
+          <span class="dtag dtag-elec">Electrical</span>
+          <span class="dtag dtag-soft">Software</span>
+        </div>
+        <span class="pcard-arrow">→</span>
+      </div>
+      <div class="pcard-img">
+        <i class="ti ti-photo" aria-hidden="true"></i>
+        <span>Product image</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-title">[Product Name B]</div>
+        <div class="pcard-desc">[One-sentence description of what this product is and who it's for.]</div>
+      </div>
+    </a>
+
+    <a class="pcard" href="product-template.html"
+       data-domains="mech elec" data-tier="hobbyist"
+       data-name="[Product Name C]" data-date="202602">
+      <div class="pcard-top">
+        <div class="pcard-tags">
+          <span class="dtag dtag-mech">Mechanical</span>
+          <span class="dtag dtag-elec">Electrical</span>
+        </div>
+        <span class="pcard-arrow">→</span>
+      </div>
+      <div class="pcard-img">
+        <i class="ti ti-photo" aria-hidden="true"></i>
+        <span>Product image</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-title">[Product Name C]</div>
+        <div class="pcard-desc">[One-sentence description of what this product is and who it's for.]</div>
+      </div>
+    </a>
+
+    <!-- Add more .pcard elements here -->
+
+  </div>
+
+  <!-- ── Suggestion bar ────────────────────────────────────── -->
+  <div class="suggestion-bar">
+    <div class="sug-left">
+      <span class="sug-title">Don't see what you need?</span>
+      <span class="sug-sub">Tell me what you're trying to build — I may be able to make it.</span>
+    </div>
+    <a class="sug-btn" href="../contact.html">Submit a suggestion →</a>
+  </div>
+
+  <div class="consult-bar">
+    <span class="c-text">Available for contract and consulting engagements</span>
+    <a class="c-link" href="../contact.html">Get in touch →</a>
+  </div>
+
+  <script>
+    const activeFilters = { domain: new Set(), tier: new Set() };
+
+    function toggleFilter(el) {
+      const { filter, value } = el.dataset;
+      const onClass  = `ftag-${value}-on`;
+      const offClass = `ftag-${value}-off`;
+
+      if (activeFilters[filter].has(value)) {
+        activeFilters[filter].delete(value);
+        el.classList.replace(onClass, offClass);
+      } else {
+        activeFilters[filter].add(value);
+        el.classList.replace(offClass, onClass);
+      }
+      filterCatalog();
+    }
+
+    function filterCatalog() {
+      const query   = document.getElementById('catalog-search').value.toLowerCase();
+      const sort    = document.getElementById('catalog-sort').value;
+      const cards   = Array.from(document.querySelectorAll('#catalog-grid .pcard'));
+      let   visible = 0;
+
+      cards.forEach(card => {
+        const domains = card.dataset.domains.split(' ');
+        const tier    = card.dataset.tier;
+        const name    = card.dataset.name.toLowerCase();
+
+        const domainOk = activeFilters.domain.size === 0 || domains.some(d => activeFilters.domain.has(d));
+        const tierOk   = activeFilters.tier.size === 0   || activeFilters.tier.has(tier);
+        const searchOk = name.includes(query);
+
+        const show = domainOk && tierOk && searchOk;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      // Sort visible cards
+      const grid = document.getElementById('catalog-grid');
+      const sorted = cards.filter(c => c.style.display !== 'none').sort((a, b) => {
+        if (sort === 'az') return a.dataset.name.localeCompare(b.dataset.name);
+        return parseInt(b.dataset.date) - parseInt(a.dataset.date);
+      });
+      sorted.forEach(c => grid.appendChild(c));
+
+      const total = cards.length;
+      document.getElementById('results-count').textContent =
+        visible === total ? `Showing all ${total} products` : `Showing ${visible} of ${total} products`;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.frame{background:#0F1012;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.09);}
+.browser-bar{background:#141618;border-bottom:1px solid rgba(255,255,255,0.07);padding:10px 16px;display:flex;align-items:center;gap:10px;}
+.b-dots{display:flex;gap:5px;}
+.b-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.1);}
+.b-url{flex:1;background:rgba(255,255,255,0.05);border-radius:4px;padding:4px 12px;font-family:'Barlow Condensed',sans-serif;font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:0.04em;text-align:center;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:58px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.cr-mark{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:20px;color:#C8922A;letter-spacing:0.12em;}
+.nav-links{display:flex;gap:32px;}
+.nav-link{font-family:'Barlow',sans-serif;font-size:13px;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:0.04em;text-decoration:none;}
+.nav-link.active{color:rgba(255,255,255,0.88);}
+.nav-cta{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#C8922A;border:1px solid rgba(200,146,42,0.45);padding:6px 18px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;}
+.breadcrumb{padding:20px 40px 0;display:flex;align-items:center;gap:8px;}
+.bc-link{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:0.08em;text-decoration:none;text-transform:uppercase;}
+.bc-sep{font-size:11px;color:rgba(255,255,255,0.15);}
+.bc-current{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;}
+.project-header{padding:20px 40px 0;}
+.header-top{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.pstatus{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border-radius:2px;background:rgba(200,146,42,0.12);color:#C8922A;border:1px solid rgba(200,146,42,0.3);}
+.dtag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:500;padding:3px 9px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;}
+.project-title{font-family:'IBM Plex Sans',sans-serif;font-size:36px;font-weight:300;color:#E8E6DF;letter-spacing:-0.01em;line-height:1.1;margin-bottom:16px;}
+.header-meta{display:flex;gap:28px;}
+.meta-item{display:flex;flex-direction:column;gap:3px;}
+.meta-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:rgba(255,255,255,0.22);letter-spacing:0.14em;text-transform:uppercase;}
+.meta-value{font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(255,255,255,0.55);}
+.ext-links{margin:24px 40px 0;padding:14px 20px;background:#141618;border:1px solid rgba(255,255,255,0.07);border-radius:4px;display:flex;align-items:center;gap:6px;}
+.ext-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:rgba(255,255,255,0.22);letter-spacing:0.14em;text-transform:uppercase;margin-right:8px;}
+.ext-link{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:3px;border:1px solid rgba(255,255,255,0.09);background:rgba(255,255,255,0.03);text-decoration:none;}
+.ext-link i{font-size:15px;color:rgba(255,255,255,0.45);}
+.ext-link span{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;color:rgba(255,255,255,0.45);letter-spacing:0.08em;text-transform:uppercase;}
+.ext-arrow{font-size:10px;color:rgba(255,255,255,0.2);}
+.section{padding:32px 40px 0;}
+.section-heading{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;color:#C8922A;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.section-heading::after{content:'';flex:1;height:1px;background:rgba(200,146,42,0.2);}
+.writeup p{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.58);line-height:1.85;margin-bottom:14px;letter-spacing:0.02em;}
+.writeup h3{font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:400;color:rgba(255,255,255,0.82);margin:22px 0 10px;letter-spacing:-0.01em;}
+.inline-img{width:100%;background:#141618;border:1px solid rgba(255,255,255,0.07);border-radius:4px;margin:20px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;gap:8px;}
+.inline-img i{font-size:24px;color:rgba(255,255,255,0.12);}
+.inline-img span{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:0.12em;text-transform:uppercase;}
+.inline-img-caption{font-family:'Barlow',sans-serif;font-size:11px;color:rgba(255,255,255,0.25);text-align:center;font-style:italic;margin-top:-12px;margin-bottom:20px;}
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.gallery-cell{background:#141618;border:1px solid rgba(255,255,255,0.07);border-radius:4px;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
+.gallery-cell i{font-size:20px;color:rgba(255,255,255,0.1);}
+.gallery-cell span{font-family:'Barlow Condensed',sans-serif;font-size:9px;color:rgba(255,255,255,0.15);letter-spacing:0.1em;text-transform:uppercase;}
+.files-list{display:flex;flex-direction:column;gap:8px;}
+.file-row{display:flex;align-items:center;gap:14px;padding:12px 16px;background:#141618;border:1px solid rgba(255,255,255,0.07);border-radius:4px;}
+.file-type{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:500;padding:3px 8px;border-radius:2px;letter-spacing:0.08em;text-transform:uppercase;flex-shrink:0;}
+.ft-pdf{background:rgba(200,146,42,0.12);color:#C8922A;border:1px solid rgba(200,146,42,0.25);}
+.ft-stl{background:rgba(217,95,43,0.12);color:#D95F2B;border:1px solid rgba(217,95,43,0.25);}
+.ft-kicad{background:rgba(141,184,74,0.12);color:#8DB84A;border:1px solid rgba(141,184,74,0.25);}
+.ft-zip{background:rgba(61,175,184,0.12);color:#3DAFB8;border:1px solid rgba(61,175,184,0.25);}
+.file-name{font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(255,255,255,0.65);flex:1;}
+.file-meta{display:flex;gap:16px;align-items:center;}
+.file-ver{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:0.08em;}
+.file-date{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:0.05em;}
+.file-dl{font-size:15px;color:rgba(255,255,255,0.2);}
+.changelog-list{display:flex;flex-direction:column;}
+.cl-entry{display:flex;gap:24px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.cl-entry:last-child{border-bottom:none;}
+.cl-left{display:flex;flex-direction:column;gap:6px;min-width:80px;}
+.cl-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.28);white-space:nowrap;}
+.cl-tag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:500;padding:2px 6px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;width:fit-content;}
+.cl-hardware{background:rgba(141,184,74,0.1);color:#8DB84A;border:1px solid rgba(141,184,74,0.2);}
+.cl-software{background:rgba(61,175,184,0.1);color:#3DAFB8;border:1px solid rgba(61,175,184,0.2);}
+.cl-docs{background:rgba(200,146,42,0.1);color:#C8922A;border:1px solid rgba(200,146,42,0.2);}
+.cl-msg{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.55;padding-top:1px;}
+.consult-bar{padding:16px 40px;margin-top:40px;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.012);}
+.c-text{font-family:'Barlow',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.32);letter-spacing:0.025em;}
+.c-link{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;color:#C8922A;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;}
+</style>
+
+<div class="frame">
+  <div class="browser-bar">
+    <div class="b-dots"><div class="b-dot"></div><div class="b-dot"></div><div class="b-dot"></div></div>
+    <div class="b-url">chrisrayengineering.com/projects/keystone-dev-board</div>
+  </div>
+
+  <nav class="nav">
+    <div class="cr-mark">CR</div>
+    <div class="nav-links">
+      <a class="nav-link" href="#">Catalog</a>
+      <a class="nav-link active" href="#">Projects</a>
+      <a class="nav-link" href="#">About</a>
+    </div>
+    <a class="nav-cta" href="#">Contact</a>
+  </nav>
+
+  <div class="breadcrumb">
+    <a class="bc-link" href="#">Projects</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-current">Keystone Dev Board</span>
+  </div>
+
+  <div class="project-header">
+    <div class="header-top">
+      <span class="pstatus">Active</span>
+      <span class="dtag" style="background:rgba(141,184,74,0.12);color:#8DB84A;border:1px solid rgba(141,184,74,0.25);">Electrical</span>
+      <span class="dtag" style="background:rgba(217,95,43,0.12);color:#D95F2B;border:1px solid rgba(217,95,43,0.25);">Mechanical</span>
+    </div>
+    <div class="project-title">Keystone Dev Board</div>
+    <div class="header-meta">
+      <div class="meta-item">
+        <span class="meta-label">Created</span>
+        <span class="meta-value">Oct 2025</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Last updated</span>
+        <span class="meta-value">May 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Version</span>
+        <span class="meta-value">v2.1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ext-links">
+    <span class="ext-label">External</span>
+    <a class="ext-link" href="#" target="_blank">
+      <i class="ti ti-brand-github" aria-hidden="true"></i>
+      <span>GitHub</span>
+      <span class="ext-arrow">↗</span>
+    </a>
+    <a class="ext-link" href="#" target="_blank">
+      <i class="ti ti-brand-youtube" aria-hidden="true"></i>
+      <span>YouTube</span>
+      <span class="ext-arrow">↗</span>
+    </a>
+    <a class="ext-link" href="#" target="_blank">
+      <i class="ti ti-cube" aria-hidden="true"></i>
+      <span>Thingiverse</span>
+      <span class="ext-arrow">↗</span>
+    </a>
+  </div>
+
+  <div class="section">
+    <div class="section-heading">Overview</div>
+    <div class="writeup">
+      <p>The Keystone Dev Board is a compact, ruggedized microcontroller platform designed from the ground up for industrial sensor interfacing and harsh field environments. Unlike general-purpose development boards, Keystone prioritizes signal integrity, robust I/O protection, and long-term field reliability over breadboard compatibility or low unit cost.</p>
+      <h3>Design goals</h3>
+      <p>The primary design constraint was a board that could be deployed in an enclosure without modification — no jumper wires, no bodge resistors, no rework. Every interface is broken out to a latching industrial connector and every input is protected to at minimum ±24V transient tolerance.</p>
+      <div class="inline-img">
+        <i class="ti ti-circuit-board" aria-hidden="true"></i>
+        <span>Block diagram — power architecture and I/O routing</span>
+      </div>
+      <p class="inline-img-caption">Fig. 1 — System block diagram showing power domains and signal paths</p>
+      <p>Power input accepts 7–36V unregulated DC through a reverse-polarity protected Anderson connector. Three switching regulators generate isolated 5V, 3.3V, and an adjustable analog reference rail. All regulators are rated to 85°C ambient without derating.</p>
+      <h3>Firmware</h3>
+      <p>The board ships with a minimal HAL written in C that exposes all peripherals over a documented serial protocol. A Python wrapper library handles host-side communication for rapid prototyping. Both are MIT licensed and available on GitHub.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading">Images</div>
+    <div class="gallery-grid">
+      <div class="gallery-cell"><i class="ti ti-photo" aria-hidden="true"></i><span>Top view</span></div>
+      <div class="gallery-cell"><i class="ti ti-photo" aria-hidden="true"></i><span>Bottom view</span></div>
+      <div class="gallery-cell"><i class="ti ti-photo" aria-hidden="true"></i><span>Enclosure fit</span></div>
+      <div class="gallery-cell"><i class="ti ti-photo" aria-hidden="true"></i><span>Connector detail</span></div>
+      <div class="gallery-cell"><i class="ti ti-photo" aria-hidden="true"></i><span>Field deployment</span></div>
+      <div class="gallery-cell"><i class="ti ti-photo" aria-hidden="true"></i><span>Rev 2 vs Rev 1</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading">Files &amp; Downloads</div>
+    <div class="files-list">
+      <div class="file-row">
+        <span class="file-type ft-pdf">PDF</span>
+        <span class="file-name">keystone-devboard-whitepaper.pdf</span>
+        <div class="file-meta">
+          <span class="file-ver">v2.1</span>
+          <span class="file-date">May 2026</span>
+          <i class="ti ti-download file-dl" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="file-row">
+        <span class="file-type ft-kicad">KiCad</span>
+        <span class="file-name">keystone-devboard-schematics.zip</span>
+        <div class="file-meta">
+          <span class="file-ver">v2.1</span>
+          <span class="file-date">May 2026</span>
+          <i class="ti ti-download file-dl" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="file-row">
+        <span class="file-type ft-stl">STL</span>
+        <span class="file-name">keystone-enclosure-v2.stl</span>
+        <div class="file-meta">
+          <span class="file-ver">v2.0</span>
+          <span class="file-date">Feb 2026</span>
+          <i class="ti ti-download file-dl" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="file-row">
+        <span class="file-type ft-zip">ZIP</span>
+        <span class="file-name">keystone-firmware-hal.zip</span>
+        <div class="file-meta">
+          <span class="file-ver">v1.4</span>
+          <span class="file-date">Apr 2026</span>
+          <i class="ti ti-download file-dl" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-bottom:0;">
+    <div class="section-heading">Changelog</div>
+    <div class="changelog-list">
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">2026-05-12</span>
+          <span class="cl-tag cl-hardware">Hardware</span>
+        </div>
+        <span class="cl-msg">Updated analog reference rail stability fix, revised BOM for component availability</span>
+      </div>
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">2026-04-03</span>
+          <span class="cl-tag cl-software">Software</span>
+        </div>
+        <span class="cl-msg">Released HAL v1.4 — added CAN bus peripheral support and fixed UART buffer overrun</span>
+      </div>
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">2026-02-18</span>
+          <span class="cl-tag cl-hardware">Hardware</span>
+        </div>
+        <span class="cl-msg">Published enclosure v2.0 with revised connector cutouts and DIN rail clip geometry</span>
+      </div>
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">2026-01-07</span>
+          <span class="cl-tag cl-docs">Docs</span>
+        </div>
+        <span class="cl-msg">Added full whitepaper writeup and block diagram — project documentation now complete</span>
+      </div>
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">2025-10-22</span>
+          <span class="cl-tag cl-hardware">Hardware</span>
+        </div>
+        <span class="cl-msg">Initial project publish — Rev 1 schematics and preliminary firmware</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="consult-bar">
+    <span class="c-text">Available for contract and consulting engagements across all engineering domains</span>
+    <a class="c-link" href="#">Get in touch →</a>
+  </div>
+</div>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Product Name] — CR Catalog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="cr-mark" href="../index.html">CR</a>
+    <div class="nav-links">
+      <a class="nav-link active" href="index.html">Catalog</a>
+      <a class="nav-link" href="../projects/index.html">Projects</a>
+      <a class="nav-link" href="../about.html">About</a>
+    </div>
+    <a class="nav-cta" href="../contact.html">Contact</a>
+  </nav>
+
+  <!-- ── Breadcrumb ────────────────────────────────────────── -->
+  <div class="breadcrumb">
+    <a class="bc-link" href="index.html">Catalog</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-current">[Product Name]</span>
+  </div>
+
+  <!-- ── Product header: tier badge + domain tags ──────────── -->
+  <div class="product-header">
+    <div class="header-left">
+      <!--
+        Use .tier-badge for Hobbyist products (gold accent)
+        Use .tier-badge-commercial for Commercial products (neutral)
+      -->
+      <span class="tier-badge">Hobbyist</span>
+      <!-- <span class="tier-badge-commercial">Commercial</span> -->
+      <span class="dtag dtag-mech">Mechanical</span>
+      <!-- Add more domain tags as needed -->
+    </div>
+    <!-- Link to the associated project page if one exists -->
+    <a class="related-link" href="../projects/project-template.html">
+      <i class="ti ti-file-description" aria-hidden="true"></i>
+      View project page ↗
+    </a>
+  </div>
+
+  <div class="product-title">[Product Name]</div>
+
+  <!-- ── Image gallery ─────────────────────────────────────── -->
+  <div class="images-section">
+    <!-- Primary image: replace .pcard-img placeholder with an <img> tag once you have photos -->
+    <div class="img-primary" id="img-primary">
+      <i class="ti ti-photo" aria-hidden="true"></i>
+      <span>Primary product image</span>
+    </div>
+    <!-- Thumbnails: clicking a thumb swaps the primary image (see script below) -->
+    <div class="img-thumbs">
+      <div class="img-thumb active" data-src="" onclick="swapImage(this)"><i class="ti ti-photo" aria-hidden="true"></i></div>
+      <div class="img-thumb" data-src="" onclick="swapImage(this)"><i class="ti ti-photo" aria-hidden="true"></i></div>
+      <div class="img-thumb" data-src="" onclick="swapImage(this)"><i class="ti ti-photo" aria-hidden="true"></i></div>
+      <div class="img-thumb" data-src="" onclick="swapImage(this)"><i class="ti ti-photo" aria-hidden="true"></i></div>
+    </div>
+  </div>
+
+  <!-- ── Description ───────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-heading">Description</div>
+    <div class="description">
+      <p>[First paragraph: what the product is, what problem it solves, and who it's designed for.]</p>
+      <p>[Second paragraph: key design details, materials, performance characteristics, or notable features.]</p>
+    </div>
+  </div>
+
+  <!-- ── Specifications ────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-heading">Specifications</div>
+    <div class="specs-block">
+
+      <div class="spec-group">
+        <div class="spec-group-title">Physical</div>
+        <ul class="spec-list">
+          <li><span class="spec-key">Material</span> [value]</li>
+          <li><span class="spec-key">Weight</span> [value]</li>
+          <li><span class="spec-key">Dimensions</span> [value]</li>
+        </ul>
+      </div>
+
+      <div class="spec-group">
+        <div class="spec-group-title">Performance</div>
+        <ul class="spec-list">
+          <li><span class="spec-key">[Spec key]</span> [value]</li>
+          <li><span class="spec-key">[Spec key]</span> [value]</li>
+          <li><span class="spec-key">[Spec key]</span> [value]</li>
+        </ul>
+      </div>
+
+      <div class="spec-group">
+        <div class="spec-group-title">Compatibility</div>
+        <ul class="spec-list">
+          <li><span class="spec-key">[Spec key]</span> [value]</li>
+          <li><span class="spec-key">[Spec key]</span> [value]</li>
+        </ul>
+      </div>
+
+      <div class="spec-group">
+        <div class="spec-group-title">Included</div>
+        <ul class="spec-list">
+          <li>[Item in the box]</li>
+          <li>[Item in the box]</li>
+          <li>[Item in the box]</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Downloads ─────────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-heading">Downloads</div>
+    <div class="files-list">
+
+      <div class="file-row">
+        <span class="file-type ft-pdf">PDF</span>
+        <span class="file-name">[product-name]-spec-sheet.pdf</span>
+        <div class="file-meta">
+          <span class="file-ver">v1.0</span>
+          <span class="file-date">[Mon Year]</span>
+          <a href="#" download><i class="ti ti-download file-dl" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="file-row">
+        <span class="file-type ft-pdf">PDF</span>
+        <span class="file-name">[product-name]-user-manual.pdf</span>
+        <div class="file-meta">
+          <span class="file-ver">v1.0</span>
+          <span class="file-date">[Mon Year]</span>
+          <a href="#" download><i class="ti ti-download file-dl" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--
+    ── Purchase section ───────────────────────────────────────
+    Use .buy-strip for Hobbyist products sold via storefronts.
+    Use .quote-strip for Commercial products sold via quote.
+    Show only one of the two blocks below.
+  -->
+
+  <!-- HOBBYIST: storefront links -->
+  <div class="buy-strip">
+    <div class="buy-left">
+      <span class="buy-label">Available from</span>
+      <span class="buy-note">Opens in a new tab — sold through third-party storefronts</span>
+    </div>
+    <div class="buy-actions">
+      <a class="buy-btn" href="#" target="_blank">
+        <i class="ti ti-external-link" aria-hidden="true"></i>Amazon ↗
+      </a>
+      <a class="buy-btn" href="#" target="_blank">
+        <i class="ti ti-external-link" aria-hidden="true"></i>eBay ↗
+      </a>
+    </div>
+  </div>
+
+  <!--
+  COMMERCIAL: quote request — uncomment and remove the buy-strip above
+  <div class="quote-strip">
+    <div class="quote-left">
+      <span class="quote-label">Commercial inquiry</span>
+      <span class="quote-note">Pricing is volume and configuration dependent. Submit a request with your application details and expected quantities and I'll respond within two business days.</span>
+    </div>
+    <a class="quote-btn" href="../contact.html">Request a quote →</a>
+  </div>
+  -->
+
+  <div class="consult-bar">
+    <span class="c-text">Available for contract and consulting engagements</span>
+    <a class="c-link" href="../contact.html">Get in touch →</a>
+  </div>
+
+  <script>
+    function swapImage(thumb) {
+      const src = thumb.dataset.src;
+      if (!src) return;
+      document.querySelectorAll('.img-thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+      const primary = document.getElementById('img-primary');
+      primary.innerHTML = `<img src="${src}" alt="Product image">`;
+    }
+  </script>
+
+</body>
+</html>

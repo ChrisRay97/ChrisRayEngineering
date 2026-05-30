@@ -1,0 +1,211 @@
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.frame{background:#0F1012;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.09);}
+.browser-bar{background:#141618;border-bottom:1px solid rgba(255,255,255,0.07);padding:10px 16px;display:flex;align-items:center;gap:10px;}
+.b-dots{display:flex;gap:5px;}
+.b-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.1);}
+.b-url{flex:1;background:rgba(255,255,255,0.05);border-radius:4px;padding:4px 12px;font-family:'Barlow Condensed',sans-serif;font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:0.04em;text-align:center;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:58px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.cr-mark{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:20px;color:#C8922A;letter-spacing:0.12em;}
+.nav-links{display:flex;gap:32px;}
+.nav-link{font-family:'Barlow',sans-serif;font-size:13px;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:0.04em;text-decoration:none;}
+.nav-link.active{color:rgba(255,255,255,0.88);}
+.nav-cta{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#C8922A;border:1px solid rgba(200,146,42,0.45);padding:6px 18px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;}
+.page-header{padding:40px 40px 0;}
+.page-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;color:#C8922A;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.eyebrow-line{width:24px;height:1px;background:#C8922A;opacity:0.6;}
+.page-title{font-family:'IBM Plex Sans',sans-serif;font-size:32px;font-weight:300;color:#E8E6DF;letter-spacing:-0.01em;margin-bottom:8px;}
+.page-sub{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.35);letter-spacing:0.02em;}
+.controls{border-bottom:1px solid rgba(255,255,255,0.07);}
+.ctrl-row-1{padding:20px 40px 14px;display:flex;align-items:center;gap:12px;}
+.search-wrap{flex:1;position:relative;display:flex;align-items:center;}
+.search-icon{position:absolute;left:12px;color:rgba(255,255,255,0.22);font-size:15px;}
+.search-input{width:100%;background:#141618;border:1px solid rgba(255,255,255,0.09);border-radius:3px;padding:8px 12px 8px 34px;font-family:'Barlow',sans-serif;font-size:13px;color:rgba(255,255,255,0.6);outline:none;letter-spacing:0.02em;}
+.search-input::placeholder{color:rgba(255,255,255,0.18);}
+.sort-wrap{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.sort-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:500;color:rgba(255,255,255,0.25);letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;}
+.sort-select{background:#141618;border:1px solid rgba(255,255,255,0.09);border-radius:3px;padding:7px 10px;font-family:'Barlow Condensed',sans-serif;font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.06em;outline:none;}
+.ctrl-row-2{padding:0 40px 16px;display:flex;align-items:center;gap:20px;}
+.filter-group{display:flex;align-items:center;gap:6px;}
+.filter-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:500;color:rgba(255,255,255,0.22);letter-spacing:0.14em;text-transform:uppercase;margin-right:2px;}
+.ftag{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:500;padding:4px 11px;border-radius:3px;letter-spacing:0.09em;text-transform:uppercase;cursor:pointer;border:1px solid transparent;}
+.ftag-elec-off{background:rgba(141,184,74,0.07);color:rgba(141,184,74,0.4);border-color:rgba(141,184,74,0.13);}
+.ftag-mech-on{background:rgba(217,95,43,0.12);color:#D95F2B;border-color:rgba(217,95,43,0.3);}
+.ftag-soft-off{background:rgba(61,175,184,0.07);color:rgba(61,175,184,0.4);border-color:rgba(61,175,184,0.13);}
+.ftag-hobbyist{background:rgba(200,146,42,0.12);color:#C8922A;border-color:rgba(200,146,42,0.3);}
+.ftag-commercial{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.28);border-color:rgba(255,255,255,0.08);}
+.ctrl-divider{width:1px;height:22px;background:rgba(255,255,255,0.07);}
+.results-meta{padding:14px 40px 0;display:flex;align-items:center;gap:8px;}
+.results-count{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:rgba(255,255,255,0.22);letter-spacing:0.08em;text-transform:uppercase;}
+.active-chip{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:2px;}
+.chip-brass{color:#C8922A;background:rgba(200,146,42,0.1);border:1px solid rgba(200,146,42,0.2);}
+.chip-mech{color:#D95F2B;background:rgba(217,95,43,0.1);border:1px solid rgba(217,95,43,0.2);}
+.grid{padding:20px 40px 40px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.pcard{background:#141618;border:1px solid rgba(255,255,255,0.07);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;}
+.pcard-top{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 0;}
+.pcard-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.dtag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:500;padding:2px 8px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;}
+.pcard-arrow{font-size:13px;color:rgba(255,255,255,0.15);}
+.pcard-img{margin:12px 16px;background:#0F1012;border:1px solid rgba(255,255,255,0.06);border-radius:3px;height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
+.pcard-img i{font-size:22px;color:rgba(255,255,255,0.09);}
+.pcard-img span{font-family:'Barlow Condensed',sans-serif;font-size:9px;color:rgba(255,255,255,0.12);letter-spacing:0.1em;text-transform:uppercase;}
+.pcard-body{padding:0 16px 18px;display:flex;flex-direction:column;flex:1;}
+.pcard-title{font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:400;color:rgba(255,255,255,0.88);line-height:1.35;margin-bottom:7px;}
+.pcard-desc{font-family:'Barlow',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.65;}
+.suggestion-bar{margin:0 40px 40px;padding:18px 24px;background:#141618;border:1px solid rgba(255,255,255,0.07);border-radius:4px;display:flex;align-items:center;justify-content:space-between;}
+.sug-left{display:flex;flex-direction:column;gap:4px;}
+.sug-title{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:400;color:rgba(255,255,255,0.7);}
+.sug-sub{font-family:'Barlow',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.3);letter-spacing:0.02em;}
+.sug-btn{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;color:#C8922A;border:1px solid rgba(200,146,42,0.35);padding:7px 16px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;}
+.consult-bar{padding:16px 40px;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.012);}
+.c-text{font-family:'Barlow',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.32);letter-spacing:0.025em;}
+.c-link{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;color:#C8922A;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;}
+</style>
+
+<div class="frame">
+  <div class="browser-bar">
+    <div class="b-dots"><div class="b-dot"></div><div class="b-dot"></div><div class="b-dot"></div></div>
+    <div class="b-url">chrisrayengineering.com/catalog</div>
+  </div>
+
+  <nav class="nav">
+    <div class="cr-mark">CR</div>
+    <div class="nav-links">
+      <a class="nav-link active" href="#">Catalog</a>
+      <a class="nav-link" href="#">Projects</a>
+      <a class="nav-link" href="#">About</a>
+    </div>
+    <a class="nav-cta" href="#">Contact</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-eyebrow"><span class="eyebrow-line"></span>ChrisRayEngineering</div>
+    <div class="page-title">Catalog</div>
+    <div class="page-sub">Hardware, software, and machined products — designed and built in-house.</div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row-1">
+      <div class="search-wrap">
+        <i class="ti ti-search search-icon" aria-hidden="true"></i>
+        <input class="search-input" type="text" placeholder="Search catalog...">
+      </div>
+      <div class="sort-wrap">
+        <span class="sort-label">Sort by</span>
+        <select class="sort-select">
+          <option>Newest</option>
+          <option>A — Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="ctrl-row-2">
+      <div class="filter-group">
+        <span class="filter-label">Domain</span>
+        <span class="ftag ftag-elec-off">Electrical</span>
+        <span class="ftag ftag-mech-on">Mechanical</span>
+        <span class="ftag ftag-soft-off">Software</span>
+      </div>
+      <div class="ctrl-divider"></div>
+      <div class="filter-group">
+        <span class="filter-label">Tier</span>
+        <span class="ftag ftag-hobbyist">Hobbyist</span>
+        <span class="ftag ftag-commercial">Commercial</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-meta">
+    <span class="results-count">Showing 4 of 7 products</span>
+    <span class="active-chip chip-brass">Hobbyist ×</span>
+    <span class="active-chip chip-mech">Mechanical ×</span>
+  </div>
+
+  <div class="grid">
+
+    <div class="pcard">
+      <div class="pcard-top">
+        <div class="pcard-tags">
+          <span class="dtag" style="background:rgba(217,95,43,0.12);color:#D95F2B;border:1px solid rgba(217,95,43,0.25);">Mechanical</span>
+        </div>
+        <span class="pcard-arrow">→</span>
+      </div>
+      <div class="pcard-img">
+        <i class="ti ti-photo" aria-hidden="true"></i>
+        <span>Product image</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-title">Modular Vise Stop</div>
+        <div class="pcard-desc">Precision-ground vise stop for manual mills. T-slot mount, adjustable in X and Z.</div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-top">
+        <div class="pcard-tags">
+          <span class="dtag" style="background:rgba(217,95,43,0.12);color:#D95F2B;border:1px solid rgba(217,95,43,0.25);">Mechanical</span>
+          <span class="dtag" style="background:rgba(141,184,74,0.12);color:#8DB84A;border:1px solid rgba(141,184,74,0.25);">Electrical</span>
+        </div>
+        <span class="pcard-arrow">→</span>
+      </div>
+      <div class="pcard-img">
+        <i class="ti ti-photo" aria-hidden="true"></i>
+        <span>Product image</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-title">Keystone Dev Board</div>
+        <div class="pcard-desc">Ruggedized microcontroller platform for industrial sensor interfacing and field deployment.</div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-top">
+        <div class="pcard-tags">
+          <span class="dtag" style="background:rgba(217,95,43,0.12);color:#D95F2B;border:1px solid rgba(217,95,43,0.25);">Mechanical</span>
+        </div>
+        <span class="pcard-arrow">→</span>
+      </div>
+      <div class="pcard-img">
+        <i class="ti ti-photo" aria-hidden="true"></i>
+        <span>Product image</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-title">DIN Rail End Cap Set</div>
+        <div class="pcard-desc">Machined aluminum end caps for TS-35 DIN rail. Clean finish, tapped for panel grounding.</div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-top">
+        <div class="pcard-tags">
+          <span class="dtag" style="background:rgba(61,175,184,0.12);color:#3DAFB8;border:1px solid rgba(61,175,184,0.25);">Software</span>
+          <span class="dtag" style="background:rgba(217,95,43,0.12);color:#D95F2B;border:1px solid rgba(217,95,43,0.25);">Mechanical</span>
+        </div>
+        <span class="pcard-arrow">→</span>
+      </div>
+      <div class="pcard-img">
+        <i class="ti ti-photo" aria-hidden="true"></i>
+        <span>Product image</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-title">CNC Toolpath Optimizer</div>
+        <div class="pcard-desc">Post-processor for reducing cycle time on 3-axis mills without sacrificing surface finish.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="suggestion-bar">
+    <div class="sug-left">
+      <span class="sug-title">Don't see what you need?</span>
+      <span class="sug-sub">Tell me what you're trying to build — I may be able to make it.</span>
+    </div>
+    <span class="sug-btn">Submit a suggestion →</span>
+  </div>
+
+  <div class="consult-bar">
+    <span class="c-text">Available for contract and consulting engagements across all engineering domains</span>
+    <a class="c-link" href="#">Get in touch →</a>
+  </div>
+</div>

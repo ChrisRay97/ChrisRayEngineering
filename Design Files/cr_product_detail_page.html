@@ -1,0 +1,218 @@
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.frame{background:#0F1012;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.09);}
+.browser-bar{background:#141618;border-bottom:1px solid rgba(255,255,255,0.07);padding:10px 16px;display:flex;align-items:center;gap:10px;}
+.b-dots{display:flex;gap:5px;}
+.b-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.1);}
+.b-url{flex:1;background:rgba(255,255,255,0.05);border-radius:4px;padding:4px 12px;font-family:'Barlow Condensed',sans-serif;font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:0.04em;text-align:center;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:58px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.cr-mark{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:20px;color:#C8922A;letter-spacing:0.12em;}
+.nav-links{display:flex;gap:32px;}
+.nav-link{font-family:'Barlow',sans-serif;font-size:13px;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:0.04em;text-decoration:none;}
+.nav-link.active{color:rgba(255,255,255,0.88);}
+.nav-cta{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#C8922A;border:1px solid rgba(200,146,42,0.45);padding:6px 18px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;}
+.breadcrumb{padding:20px 40px 0;display:flex;align-items:center;gap:8px;}
+.bc-link{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:0.08em;text-decoration:none;text-transform:uppercase;}
+.bc-sep{font-size:11px;color:rgba(255,255,255,0.15);}
+.bc-current{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;}
+.product-header{padding:16px 40px 0;display:flex;align-items:center;justify-content:space-between;}
+.header-left{display:flex;align-items:center;gap:10px;}
+.tier-badge{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border-radius:2px;background:rgba(200,146,42,0.12);color:#C8922A;border:1px solid rgba(200,146,42,0.3);}
+.dtag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:500;padding:3px 9px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;}
+.related-link{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:6px;}
+.related-link i{font-size:13px;}
+.product-title{font-family:'IBM Plex Sans',sans-serif;font-size:34px;font-weight:300;color:#E8E6DF;letter-spacing:-0.01em;line-height:1.1;padding:12px 40px 0;}
+
+.images-section{padding:24px 40px 0;}
+.img-primary{width:100%;height:220px;background:#141618;border:1px solid rgba(255,255,255,0.07);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;}
+.img-primary i{font-size:32px;color:rgba(255,255,255,0.08);}
+.img-primary span{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:0.14em;text-transform:uppercase;}
+.img-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.img-thumb{height:72px;background:#141618;border:1px solid rgba(255,255,255,0.07);border-radius:3px;display:flex;align-items:center;justify-content:center;}
+.img-thumb i{font-size:16px;color:rgba(255,255,255,0.08);}
+.img-thumb.active{border-color:rgba(200,146,42,0.4);}
+
+.section{padding:28px 40px 0;}
+.section-heading{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;color:#C8922A;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.section-heading::after{content:'';flex:1;height:1px;background:rgba(200,146,42,0.2);}
+
+.description p{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.85;margin-bottom:12px;letter-spacing:0.02em;}
+.description p:last-child{margin-bottom:0;}
+
+.specs-block{background:#181A1C;border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:22px 24px;display:grid;grid-template-columns:1fr 1fr;gap:20px 32px;}
+.spec-group{}
+.spec-group-title{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;color:rgba(255,255,255,0.3);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.spec-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.spec-list li{display:flex;align-items:baseline;gap:8px;font-family:'Barlow',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.5;}
+.spec-list li::before{content:'—';font-size:10px;color:rgba(200,146,42,0.4);flex-shrink:0;}
+.spec-key{color:rgba(255,255,255,0.65);font-weight:400;white-space:nowrap;}
+
+.files-list{display:flex;flex-direction:column;gap:8px;}
+.file-row{display:flex;align-items:center;gap:14px;padding:11px 16px;background:#141618;border:1px solid rgba(255,255,255,0.07);border-radius:4px;}
+.file-type{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:500;padding:3px 8px;border-radius:2px;letter-spacing:0.08em;text-transform:uppercase;flex-shrink:0;}
+.ft-pdf{background:rgba(200,146,42,0.12);color:#C8922A;border:1px solid rgba(200,146,42,0.25);}
+.ft-zip{background:rgba(61,175,184,0.12);color:#3DAFB8;border:1px solid rgba(61,175,184,0.25);}
+.ft-exe{background:rgba(141,184,74,0.12);color:#8DB84A;border:1px solid rgba(141,184,74,0.25);}
+.file-name{font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(255,255,255,0.6);flex:1;}
+.file-meta{display:flex;gap:16px;align-items:center;}
+.file-ver{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:rgba(255,255,255,0.22);letter-spacing:0.08em;}
+.file-date{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:0.05em;}
+.file-dl{font-size:15px;color:rgba(255,255,255,0.2);}
+
+.buy-strip{margin:28px 40px 0;padding:20px 24px;background:#141618;border:1px solid rgba(255,255,255,0.09);border-radius:4px;display:flex;align-items:center;justify-content:space-between;}
+.buy-left{display:flex;flex-direction:column;gap:4px;}
+.buy-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:500;color:rgba(255,255,255,0.22);letter-spacing:0.16em;text-transform:uppercase;}
+.buy-note{font-family:'Barlow',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.38);letter-spacing:0.02em;}
+.buy-actions{display:flex;gap:10px;align-items:center;}
+.buy-btn{display:flex;align-items:center;gap:7px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:9px 18px;border-radius:3px;text-decoration:none;}
+.buy-amazon{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1);}
+.buy-ebay{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1);}
+.buy-btn i{font-size:14px;}
+
+.consult-bar{padding:16px 40px;margin-top:32px;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.012);}
+.c-text{font-family:'Barlow',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.32);letter-spacing:0.025em;}
+.c-link{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;color:#C8922A;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;}
+</style>
+
+<div class="frame">
+  <div class="browser-bar">
+    <div class="b-dots"><div class="b-dot"></div><div class="b-dot"></div><div class="b-dot"></div></div>
+    <div class="b-url">chrisrayengineering.com/catalog/modular-vise-stop</div>
+  </div>
+
+  <nav class="nav">
+    <div class="cr-mark">CR</div>
+    <div class="nav-links">
+      <a class="nav-link active" href="#">Catalog</a>
+      <a class="nav-link" href="#">Projects</a>
+      <a class="nav-link" href="#">About</a>
+    </div>
+    <a class="nav-cta" href="#">Contact</a>
+  </nav>
+
+  <div class="breadcrumb">
+    <a class="bc-link" href="#">Catalog</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-current">Modular Vise Stop</span>
+  </div>
+
+  <div class="product-header">
+    <div class="header-left">
+      <span class="tier-badge">Hobbyist</span>
+      <span class="dtag" style="background:rgba(217,95,43,0.12);color:#D95F2B;border:1px solid rgba(217,95,43,0.25);">Mechanical</span>
+    </div>
+    <a class="related-link" href="#">
+      <i class="ti ti-file-description" aria-hidden="true"></i>
+      View project page ↗
+    </a>
+  </div>
+  <div class="product-title">Modular Vise Stop</div>
+
+  <div class="images-section">
+    <div class="img-primary">
+      <i class="ti ti-photo" aria-hidden="true"></i>
+      <span>Primary product image</span>
+    </div>
+    <div class="img-thumbs">
+      <div class="img-thumb active"><i class="ti ti-photo" aria-hidden="true"></i></div>
+      <div class="img-thumb"><i class="ti ti-photo" aria-hidden="true"></i></div>
+      <div class="img-thumb"><i class="ti ti-photo" aria-hidden="true"></i></div>
+      <div class="img-thumb"><i class="ti ti-photo" aria-hidden="true"></i></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading">Description</div>
+    <div class="description">
+      <p>The Modular Vise Stop is a precision-ground workholding accessory designed for manual milling operations. It mounts directly to the fixed jaw of a Kurt-style vise via a T-slot and provides repeatable part positioning in the X axis without indicating or edge-finding between operations.</p>
+      <p>The adjustable stop rod is hardened and ground to 0.0005" straightness tolerance. The body is machined from 1018 steel and surface ground on all reference faces. A secondary Z-axis stop arm is included for parts that require depth location as well.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading">Specifications</div>
+    <div class="specs-block">
+      <div class="spec-group">
+        <div class="spec-group-title">Physical</div>
+        <ul class="spec-list">
+          <li><span class="spec-key">Body material</span> 1018 steel, surface ground</li>
+          <li><span class="spec-key">Stop rod</span> Hardened O1, ground to h6</li>
+          <li><span class="spec-key">Weight</span> 0.62 lb (281 g)</li>
+          <li><span class="spec-key">Body dimensions</span> 2.5 × 1.25 × 1.0 in</li>
+        </ul>
+      </div>
+      <div class="spec-group">
+        <div class="spec-group-title">Performance</div>
+        <ul class="spec-list">
+          <li><span class="spec-key">Repeatability</span> ±0.001 in</li>
+          <li><span class="spec-key">Stop rod straightness</span> 0.0005 in / 6 in</li>
+          <li><span class="spec-key">X travel</span> 0 – 3.5 in</li>
+          <li><span class="spec-key">Z arm travel</span> 0 – 2.0 in</li>
+        </ul>
+      </div>
+      <div class="spec-group">
+        <div class="spec-group-title">Compatibility</div>
+        <ul class="spec-list">
+          <li><span class="spec-key">Fits</span> Kurt D688 and compatible</li>
+          <li><span class="spec-key">T-slot width</span> 5/8 in standard</li>
+          <li><span class="spec-key">Clamp fastener</span> 3/8-16 socket head</li>
+        </ul>
+      </div>
+      <div class="spec-group">
+        <div class="spec-group-title">Included</div>
+        <ul class="spec-list">
+          <li>Vise stop body assembly</li>
+          <li>Z-axis stop arm</li>
+          <li>3/8-16 T-slot nut and bolt</li>
+          <li>3 mm and 4 mm hex keys</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading">Downloads</div>
+    <div class="files-list">
+      <div class="file-row">
+        <span class="file-type ft-pdf">PDF</span>
+        <span class="file-name">modular-vise-stop-spec-sheet.pdf</span>
+        <div class="file-meta">
+          <span class="file-ver">v1.0</span>
+          <span class="file-date">Mar 2026</span>
+          <i class="ti ti-download file-dl" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="file-row">
+        <span class="file-type ft-pdf">PDF</span>
+        <span class="file-name">modular-vise-stop-user-manual.pdf</span>
+        <div class="file-meta">
+          <span class="file-ver">v1.2</span>
+          <span class="file-date">Apr 2026</span>
+          <i class="ti ti-download file-dl" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buy-strip">
+    <div class="buy-left">
+      <span class="buy-label">Available from</span>
+      <span class="buy-note">Opens in a new tab — sold through third-party storefronts</span>
+    </div>
+    <div class="buy-actions">
+      <a class="buy-btn buy-amazon" href="#" target="_blank">
+        <i class="ti ti-external-link" aria-hidden="true"></i>Amazon ↗
+      </a>
+      <a class="buy-btn buy-ebay" href="#" target="_blank">
+        <i class="ti ti-external-link" aria-hidden="true"></i>eBay ↗
+      </a>
+    </div>
+  </div>
+
+  <div class="consult-bar">
+    <span class="c-text">Available for contract and consulting engagements across all engineering domains</span>
+    <a class="c-link" href="#">Get in touch →</a>
+  </div>
+</div>

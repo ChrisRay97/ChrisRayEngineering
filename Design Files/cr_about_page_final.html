@@ -1,0 +1,282 @@
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.frame{background:#0F1012;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.09);}
+.browser-bar{background:#141618;border-bottom:1px solid rgba(255,255,255,0.07);padding:10px 16px;display:flex;align-items:center;gap:10px;}
+.b-dots{display:flex;gap:5px;}
+.b-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.1);}
+.b-url{flex:1;background:rgba(255,255,255,0.05);border-radius:4px;padding:4px 12px;font-family:'Barlow Condensed',sans-serif;font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:0.04em;text-align:center;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:58px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.cr-mark{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:20px;color:#C8922A;letter-spacing:0.12em;}
+.nav-links{display:flex;gap:32px;}
+.nav-link{font-family:'Barlow',sans-serif;font-size:13px;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:0.04em;text-decoration:none;}
+.nav-link.active{color:rgba(255,255,255,0.88);}
+.nav-cta{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#C8922A;border:1px solid rgba(200,146,42,0.45);padding:6px 18px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;}
+.page-header{padding:40px 40px 0;}
+.page-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;color:#C8922A;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.eyebrow-line{width:24px;height:1px;background:#C8922A;opacity:0.6;}
+.page-title{font-family:'IBM Plex Sans',sans-serif;font-size:32px;font-weight:300;color:#E8E6DF;letter-spacing:-0.01em;}
+.statement{padding:24px 40px 0;}
+.statement p{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;color:rgba(255,255,255,0.52);line-height:1.9;letter-spacing:0.02em;max-width:560px;}
+.statement p span{color:rgba(255,255,255,0.82);font-weight:400;}
+.resume-row{padding:22px 40px 0;}
+.resume-btn{display:inline-flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#0F1012;background:#C8922A;padding:11px 24px;border-radius:3px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;}
+.resume-btn i{font-size:15px;}
+.section{padding:34px 40px 0;}
+.section-heading{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;color:#C8922A;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.section-heading::after{content:'';flex:1;height:1px;background:rgba(200,146,42,0.2);}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.skill-col{background:#141618;border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:20px;}
+.skill-col-header{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.skill-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.skill-col-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;}
+.skill-list{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.skill-list li{display:flex;align-items:baseline;gap:8px;font-family:'Barlow',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.4;}
+.skill-list li::before{content:'—';font-size:10px;color:rgba(255,255,255,0.18);flex-shrink:0;}
+.timeline{display:flex;flex-direction:column;}
+.tl-entry{display:flex;gap:24px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.tl-entry:last-child{border-bottom:none;}
+.tl-left{display:flex;flex-direction:column;gap:5px;min-width:96px;flex-shrink:0;}
+.tl-dates{font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.25);white-space:nowrap;line-height:1.5;}
+.tl-domain-tags{display:flex;flex-direction:column;gap:4px;}
+.tl-tag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:500;padding:2px 6px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;width:fit-content;}
+.tl-right{display:flex;flex-direction:column;gap:4px;padding-top:1px;}
+.tl-role{font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:400;color:rgba(255,255,255,0.85);line-height:1.3;}
+.tl-org{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.38);margin-bottom:2px;}
+.tl-note{font-family:'Barlow',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.28);line-height:1.6;}
+.edu-block{background:#141618;border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;}
+.edu-left{display:flex;flex-direction:column;gap:6px;}
+.edu-degree{font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:400;color:rgba(255,255,255,0.82);}
+.edu-school{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.38);}
+.edu-tags{display:flex;gap:5px;margin-top:2px;}
+.edu-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.edu-year{font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(255,255,255,0.22);}
+.dtag{font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:500;padding:2px 7px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;}
+.cert-list{display:flex;flex-direction:column;gap:8px;}
+.cert-row{background:#141618;border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.cert-left{display:flex;flex-direction:column;gap:5px;}
+.cert-name{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:400;color:rgba(255,255,255,0.82);}
+.cert-issuer{font-family:'Barlow',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);}
+.cert-tags{display:flex;gap:5px;}
+.cert-right{flex-shrink:0;}
+.cert-year{font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.22);}
+.consult-bar{padding:16px 40px;margin-top:36px;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.012);}
+.c-text{font-family:'Barlow',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.32);letter-spacing:0.025em;}
+.c-link{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;color:#C8922A;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;}
+</style>
+
+<div class="frame">
+  <div class="browser-bar">
+    <div class="b-dots"><div class="b-dot"></div><div class="b-dot"></div><div class="b-dot"></div></div>
+    <div class="b-url">chrisrayengineering.com/about</div>
+  </div>
+
+  <nav class="nav">
+    <div class="cr-mark">CR</div>
+    <div class="nav-links">
+      <a class="nav-link" href="#">Catalog</a>
+      <a class="nav-link" href="#">Projects</a>
+      <a class="nav-link active" href="#">About</a>
+    </div>
+    <a class="nav-cta" href="#">Contact</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-eyebrow"><span class="eyebrow-line"></span>ChrisRayEngineering</div>
+    <div class="page-title">About</div>
+  </div>
+
+  <div class="statement">
+    <p>I'm <span>Chris Ray</span> — a multi-disciplinary engineer working across software, electronics, and mechanical design. My work is driven by a belief that the most interesting problems sit at the boundaries between fields, and that the best way to understand something is to build it. I take on contract and consulting work alongside a growing catalog of products and open-source projects, all documented here.</p>
+  </div>
+
+  <div class="resume-row">
+    <a class="resume-btn" href="#">
+      <i class="ti ti-download" aria-hidden="true"></i>
+      Download Resume
+    </a>
+  </div>
+
+  <div class="section">
+    <div class="section-heading">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <div class="skill-col-header">
+          <div class="skill-dot" style="background:#8DB84A;"></div>
+          <span class="skill-col-title" style="color:#8DB84A;">Electrical</span>
+        </div>
+        <ul class="skill-list">
+          <li>PCB design — KiCad, Altium</li>
+          <li>Analog & mixed-signal circuits</li>
+          <li>Power electronics & conversion</li>
+          <li>Embedded firmware — C, C++</li>
+          <li>Sensor interfacing & conditioning</li>
+          <li>CAN bus, I2C, SPI, UART</li>
+          <li>EMC design & test</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <div class="skill-col-header">
+          <div class="skill-dot" style="background:#D95F2B;"></div>
+          <span class="skill-col-title" style="color:#D95F2B;">Mechanical</span>
+        </div>
+        <ul class="skill-list">
+          <li>3-axis CNC milling & turning</li>
+          <li>Manual machining & metrology</li>
+          <li>CAD — Fusion 360, SolidWorks</li>
+          <li>GD&T & engineering drawing</li>
+          <li>Sheet metal & weldment design</li>
+          <li>DIN rail panel design</li>
+          <li>Enclosure & thermal design</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <div class="skill-col-header">
+          <div class="skill-dot" style="background:#3DAFB8;"></div>
+          <span class="skill-col-title" style="color:#3DAFB8;">Software</span>
+        </div>
+        <ul class="skill-list">
+          <li>Python — data, automation, APIs</li>
+          <li>C / C++ systems programming</li>
+          <li>Web — HTML, CSS, JavaScript</li>
+          <li>Linux & shell scripting</li>
+          <li>Git & open-source workflow</li>
+          <li>ROS / robotics middleware</li>
+          <li>CAN & serial protocol tooling</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading">Experience</div>
+    <div class="timeline">
+      <div class="tl-entry">
+        <div class="tl-left">
+          <span class="tl-dates">2023 —<br>Present</span>
+          <div class="tl-domain-tags">
+            <span class="tl-tag" style="background:rgba(141,184,74,0.1);color:#8DB84A;border:1px solid rgba(141,184,74,0.2);">Electrical</span>
+            <span class="tl-tag" style="background:rgba(217,95,43,0.1);color:#D95F2B;border:1px solid rgba(217,95,43,0.2);">Mechanical</span>
+            <span class="tl-tag" style="background:rgba(61,175,184,0.1);color:#3DAFB8;border:1px solid rgba(61,175,184,0.2);">Software</span>
+          </div>
+        </div>
+        <div class="tl-right">
+          <span class="tl-role">Independent Engineer & Consultant</span>
+          <span class="tl-org">ChrisRayEngineering</span>
+          <span class="tl-note">Contract engineering, open-source projects, and commercial product development across all three domains.</span>
+        </div>
+      </div>
+      <div class="tl-entry">
+        <div class="tl-left">
+          <span class="tl-dates">2020 —<br>2023</span>
+          <div class="tl-domain-tags">
+            <span class="tl-tag" style="background:rgba(141,184,74,0.1);color:#8DB84A;border:1px solid rgba(141,184,74,0.2);">Electrical</span>
+            <span class="tl-tag" style="background:rgba(61,175,184,0.1);color:#3DAFB8;border:1px solid rgba(61,175,184,0.2);">Software</span>
+          </div>
+        </div>
+        <div class="tl-right">
+          <span class="tl-role">Electrical Engineer II</span>
+          <span class="tl-org">Acme Industrial Systems</span>
+          <span class="tl-note">Designed embedded control systems and power electronics for industrial automation equipment.</span>
+        </div>
+      </div>
+      <div class="tl-entry">
+        <div class="tl-left">
+          <span class="tl-dates">2018 —<br>2020</span>
+          <div class="tl-domain-tags">
+            <span class="tl-tag" style="background:rgba(141,184,74,0.1);color:#8DB84A;border:1px solid rgba(141,184,74,0.2);">Electrical</span>
+          </div>
+        </div>
+        <div class="tl-right">
+          <span class="tl-role">Electrical Engineer I</span>
+          <span class="tl-org">Meridian Controls Group</span>
+          <span class="tl-note">PCB design, schematic capture, and bring-up of motor drive and sensor interface boards.</span>
+        </div>
+      </div>
+      <div class="tl-entry">
+        <div class="tl-left">
+          <span class="tl-dates">2016 —<br>2018</span>
+          <div class="tl-domain-tags">
+            <span class="tl-tag" style="background:rgba(217,95,43,0.1);color:#D95F2B;border:1px solid rgba(217,95,43,0.2);">Mechanical</span>
+            <span class="tl-tag" style="background:rgba(61,175,184,0.1);color:#3DAFB8;border:1px solid rgba(61,175,184,0.2);">Software</span>
+          </div>
+        </div>
+        <div class="tl-right">
+          <span class="tl-role">Manufacturing Engineer</span>
+          <span class="tl-org">Cascade Precision Parts</span>
+          <span class="tl-note">CNC programming, tooling selection, and process development for high-mix low-volume machined components.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading">Education</div>
+    <div class="edu-block">
+      <div class="edu-left">
+        <span class="edu-degree">Electrical Engineering — attended</span>
+        <span class="edu-school">Penn State University</span>
+        <div class="edu-tags">
+          <span class="dtag" style="background:rgba(141,184,74,0.12);color:#8DB84A;border:1px solid rgba(141,184,74,0.25);">Electrical</span>
+          <span class="dtag" style="background:rgba(217,95,43,0.12);color:#D95F2B;border:1px solid rgba(217,95,43,0.25);">Mechanical</span>
+        </div>
+      </div>
+      <div class="edu-right">
+        <span class="edu-year">2014 — 2016</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-bottom:0;">
+    <div class="section-heading">Certifications</div>
+    <div class="cert-list">
+      <div class="cert-row">
+        <div class="cert-left">
+          <span class="cert-name">IPC-A-610 Certified IPC Specialist</span>
+          <span class="cert-issuer">IPC International</span>
+          <div class="cert-tags">
+            <span class="dtag" style="background:rgba(141,184,74,0.12);color:#8DB84A;border:1px solid rgba(141,184,74,0.25);">Electrical</span>
+          </div>
+        </div>
+        <span class="cert-year">2021</span>
+      </div>
+      <div class="cert-row">
+        <div class="cert-left">
+          <span class="cert-name">Certified SolidWorks Associate — Mechanical Design</span>
+          <span class="cert-issuer">Dassault Systèmes</span>
+          <div class="cert-tags">
+            <span class="dtag" style="background:rgba(217,95,43,0.12);color:#D95F2B;border:1px solid rgba(217,95,43,0.25);">Mechanical</span>
+          </div>
+        </div>
+        <span class="cert-year">2020</span>
+      </div>
+      <div class="cert-row">
+        <div class="cert-left">
+          <span class="cert-name">AWS Certified Developer — Associate</span>
+          <span class="cert-issuer">Amazon Web Services</span>
+          <div class="cert-tags">
+            <span class="dtag" style="background:rgba(61,175,184,0.12);color:#3DAFB8;border:1px solid rgba(61,175,184,0.25);">Software</span>
+          </div>
+        </div>
+        <span class="cert-year">2022</span>
+      </div>
+      <div class="cert-row">
+        <div class="cert-left">
+          <span class="cert-name">OSHA 10 — General Industry</span>
+          <span class="cert-issuer">Occupational Safety and Health Administration</span>
+          <div class="cert-tags">
+            <span class="dtag" style="background:rgba(217,95,43,0.12);color:#D95F2B;border:1px solid rgba(217,95,43,0.25);">Mechanical</span>
+            <span class="dtag" style="background:rgba(141,184,74,0.12);color:#8DB84A;border:1px solid rgba(141,184,74,0.25);">Electrical</span>
+          </div>
+        </div>
+        <span class="cert-year">2019</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="consult-bar">
+    <span class="c-text">Available for contract and consulting engagements across all engineering domains</span>
+    <a class="c-link" href="#">Get in touch →</a>
+  </div>
+</div>
