@@ -12,6 +12,7 @@ A dark, minimal multi-page website template for consultants and engineers. Serve
 ├── about.html                    Resume, skills, experience, education
 ├── contact.html                  Contact form + social links
 ├── styles.css                    Shared design system — all CSS lives here
+├── nav.js                        Hamburger menu toggle (shared by all pages)
 ├── catalog/
 │   ├── index.html                Product catalog with search + filter
 │   └── product-template.html    Single product detail page
@@ -103,6 +104,29 @@ Duplicate this file for each project. Contains:
 - **Inline writeup images**: place an `<img>` inside `.inline-img` and add a `.inline-img-caption` below it.
 
 A suggested folder for images: `assets/img/[project-or-product-name]/`.
+
+---
+
+## Mobile & Responsive Design
+
+The site is fully responsive with two breakpoints:
+
+| Breakpoint | Behavior |
+|---|---|
+| ≤ 900px (tablet) | Card grids drop from 3 columns to 2 |
+| ≤ 640px (mobile) | Card grids drop to 1 column; specs block, contact layout, and form rows stack vertically; image thumbs go to 2 columns |
+
+### Navigation
+On screens ≤ 640px the desktop nav links and Contact CTA are hidden and replaced by a hamburger button. Tapping it opens a full-width dropdown anchored below the sticky nav bar. Tapping the button again or anywhere outside closes it. The toggle logic lives in `nav.js`, which is included at the bottom of every page.
+
+When adding a new page, copy the nav markup from any existing page and include `<script src="../nav.js"></script>` (or `nav.js` for root-level pages) before `</body>`.
+
+### Hero headline
+The hero headline uses `clamp()` for fluid typography — it stays at 54px on wide screens and scales down proportionally to always fill the available content width without wrapping:
+
+```css
+font-size: clamp(16px, calc((100vw - 80px) / 11), 54px);
+```
 
 ---
 

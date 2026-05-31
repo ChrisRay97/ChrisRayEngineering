@@ -19,8 +19,19 @@
       <a class="nav-link" href="../projects/index.html">Projects</a>
       <a class="nav-link" href="../about.html">About</a>
     </div>
-    <a class="nav-cta" href="../contact.html">Contact</a>
+    <div class="nav-right">
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button type="button" class="nav-burger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
+  <div class="mobile-nav" id="mobile-nav">
+    <a class="mobile-nav-link active" href="index.html">Catalog</a>
+    <a class="mobile-nav-link" href="../projects/index.html">Projects</a>
+    <a class="mobile-nav-link" href="../about.html">About</a>
+    <a class="mobile-nav-link mobile-nav-cta" href="../contact.html">Contact</a>
+  </div>
 
   <!-- ── Breadcrumb ────────────────────────────────────────── -->
   <div class="breadcrumb">
@@ -195,6 +206,7 @@
       primary.innerHTML = `<img src="${src}" alt="Product image">`;
     }
   </script>
+  <script src="../nav.js"></script>
 
 </body>
 </html>
