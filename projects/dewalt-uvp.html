@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analog DeWalt Undervoltage Protection Circuit — CR Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="cr-mark" href="../index.html">CR</a>
+    <div class="nav-links">
+      <a class="nav-link" href="../under-construction.html">Catalog</a>
+      <a class="nav-link active" href="index.html">Projects</a>
+      <a class="nav-link" href="../about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button type="button" class="nav-burger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-nav" id="mobile-nav">
+    <a class="mobile-nav-link" href="../under-construction.html">Catalog</a>
+    <a class="mobile-nav-link active" href="index.html">Projects</a>
+    <a class="mobile-nav-link" href="../about.html">About</a>
+    <a class="mobile-nav-link mobile-nav-cta" href="../contact.html">Contact</a>
+  </div>
+
+  <!-- ── Breadcrumb ────────────────────────────────────────── -->
+  <div class="breadcrumb">
+    <a class="bc-link" href="index.html">Projects</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-current">Analog DeWalt Undervoltage Protection Circuit</span>
+  </div>
+
+  <!-- ── Project header ────────────────────────────────────── -->
+  <div class="project-header">
+    <div class="header-top">
+      <span class="pstatus pstatus-complete">Complete</span>
+      <span class="dtag dtag-elec">Electrical</span>
+      <span class="dtag dtag-mech">Mechanical</span>
+    </div>
+    <div class="project-title">Analog DeWalt Undervoltage Protection Circuit</div>
+    <div class="header-meta">
+      <div class="meta-item">
+        <span class="meta-label">Created</span>
+        <span class="meta-value">Jan 2018</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Last updated</span>
+        <span class="meta-value">2023</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Version</span>
+        <span class="meta-value">v2.0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Overview / writeup ────────────────────────────────── -->
+  <div class="section">
+    <div class="section-heading">Overview</div>
+    <div class="writeup">
+      <p>A PCB kit that lets a TS-100 soldering iron run directly off a DeWalt 20V MAX battery. The board handles the battery interface, provides manual on/off control, and uses a purely analog undervoltage lockout circuit to cut power before the cells drop to a damaging state of charge — no microcontroller required.</p>
+
+      <h3>Background</h3>
+      <p>The TS-100 is a compact, digitally controlled iron with a loyal following among hobbyists and field techs. It accepts DC power via a 5.5×2.5 mm barrel jack and operates happily anywhere in the 12–24 V range, which puts a fully charged DeWalt 20V MAX pack — sitting at roughly 20 V — squarely in its sweet spot. Anyone already invested in the DeWalt ecosystem has the energy storage sitting in their tool bag; the missing piece was a safe, reliable interface between the two.</p>
+
+      <h3>The Circuit</h3>
+      <p>The protection circuit is built around a MOSFET acting as the main power switch in series with the output. Its gate is driven by an NPN transistor, which is in turn biased through a Zener diode. When battery voltage is within the acceptable operating window the Zener keeps the transistor — and therefore the MOSFET — in conduction. If voltage drops below the Zener's threshold the transistor loses its drive, the MOSFET opens, and the output is cut before the cells reach a damaging depth of discharge. The whole scheme is passive: no firmware, no MCU, nothing to lock up or update.</p>
+      <p>Supporting the switch are a bulk decoupling capacitor, a small resistor network for biasing and gate drive, and a 3 mm green LED on the output rail that gives an unambiguous visual indication that power is live. A slide switch on the board provides manual control independent of the protection logic. The output connector is a 5.5×2.5 mm DC barrel jack on a three-foot cable — enough reach to keep the battery pack clear of the work area.</p>
+      <p>The kit is through-hole throughout, making it accessible to anyone comfortable with basic soldering.</p>
+
+      <h3>The Enclosure</h3>
+      <p>An optional two-piece 3D-printed shell — a main body and a lid pulled together with hardware fasteners — houses the PCB and gives the finished unit a clean, purposeful look. The enclosure was designed in SolidWorks and is available as STL files for printing on any FDM machine. It can be used straight off the build plate or finished with filler-primer and paint for a smoother surface texture.</p>
+    </div>
+  </div>
+
+  <!-- ── Image gallery ─────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-heading">Images</div>
+    <div class="gallery-grid" id="gallery">
+      <div class="gallery-cell"><img src="../assets/img/dewalt-uvp/assembled-top.jpg" alt="Assembled unit on DeWalt 20V battery with TS-100 iron"></div>
+      <div class="gallery-cell"><img src="../assets/img/dewalt-uvp/in-use.jpg" alt="Complete setup in use at the workbench"></div>
+      <div class="gallery-cell"><img src="../assets/img/dewalt-uvp/pcb.png" alt="PCB close-up showing through-hole components"></div>
+      <div class="gallery-cell"><img src="../assets/img/dewalt-uvp/enclosure.jpg" alt="3D-printed enclosure on DeWalt battery"></div>
+    </div>
+  </div>
+
+  <!-- ── Files & downloads ─────────────────────────────────── -->
+  <div class="section">
+    <div class="section-heading">Files &amp; Downloads</div>
+    <div class="ext-links">
+      <a class="ext-link" href="https://www.thingiverse.com/thing:4918669" target="_blank" rel="noopener noreferrer">
+        <i class="ti ti-world" aria-hidden="true"></i>
+        <span>Enclosure STLs — Thingiverse</span>
+        <span class="ext-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── Changelog ─────────────────────────────────────────── -->
+  <div class="section pb-0">
+    <div class="section-heading">Changelog</div>
+    <div class="changelog-list">
+
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">2023</span>
+          <span class="cl-tag cl-hardware">Hardware</span>
+        </div>
+        <span class="cl-msg">Full enclosure redesign in SolidWorks; refreshed PCB Gerber package; new product photography.</span>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">2018</span>
+          <span class="cl-tag cl-hardware">Hardware</span>
+        </div>
+        <span class="cl-msg">Initial PCB layout and first enclosure revision.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="consult-bar">
+    <span class="c-text">Available for contract and consulting engagements</span>
+    <a class="c-link" href="../contact.html">Get in touch →</a>
+  </div>
+
+  <script src="../nav.js"></script>
+</body>
+</html>

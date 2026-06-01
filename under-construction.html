@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Under Construction — CR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .uc-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 58px);
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .uc-icon {
+      font-size: 40px;
+      color: rgba(200,146,42,0.5);
+      margin-bottom: 28px;
+    }
+    .uc-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #C8922A;
+      margin-bottom: 16px;
+    }
+    .uc-heading {
+      font-family: 'Barlow', sans-serif;
+      font-size: 32px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 16px;
+    }
+    .uc-sub {
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.38);
+      max-width: 400px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+    .uc-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: 0 auto 40px;
+    }
+    .uc-back {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #C8922A;
+      border: 1px solid rgba(200,146,42,0.45);
+      padding: 8px 22px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .uc-back:hover {
+      border-color: rgba(200,146,42,0.8);
+      color: #d9a84a;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="cr-mark" href="index.html">CR</a>
+    <div class="nav-links">
+      <a class="nav-link" href="under-construction.html">Catalog</a>
+      <a class="nav-link" href="projects/index.html">Projects</a>
+      <a class="nav-link" href="about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-cta" href="contact.html">Contact</a>
+      <button type="button" class="nav-burger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-nav" id="mobile-nav">
+    <a class="mobile-nav-link" href="under-construction.html">Catalog</a>
+    <a class="mobile-nav-link" href="projects/index.html">Projects</a>
+    <a class="mobile-nav-link" href="about.html">About</a>
+    <a class="mobile-nav-link mobile-nav-cta" href="contact.html">Contact</a>
+  </div>
+
+  <div class="uc-wrap">
+    <div class="uc-icon"><i class="ti ti-tools" aria-hidden="true"></i></div>
+    <div class="uc-label">Under Construction</div>
+    <div class="uc-heading">This page isn't ready yet.</div>
+    <p class="uc-sub">Check back soon — this section is being built out.</p>
+    <div class="uc-divider"></div>
+    <a class="uc-back" href="index.html">Back to Home</a>
+  </div>
+
+  <script src="nav.js"></script>
+</body>
+</html>

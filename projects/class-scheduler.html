@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Scheduler — CR Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="cr-mark" href="../index.html">CR</a>
+    <div class="nav-links">
+      <a class="nav-link" href="../under-construction.html">Catalog</a>
+      <a class="nav-link active" href="index.html">Projects</a>
+      <a class="nav-link" href="../about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button type="button" class="nav-burger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-nav" id="mobile-nav">
+    <a class="mobile-nav-link" href="../under-construction.html">Catalog</a>
+    <a class="mobile-nav-link active" href="index.html">Projects</a>
+    <a class="mobile-nav-link" href="../about.html">About</a>
+    <a class="mobile-nav-link mobile-nav-cta" href="../contact.html">Contact</a>
+  </div>
+
+  <!-- ── Breadcrumb ────────────────────────────────────────── -->
+  <div class="breadcrumb">
+    <a class="bc-link" href="index.html">Projects</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-current">Class Scheduler</span>
+  </div>
+
+  <!-- ── Project header ────────────────────────────────────── -->
+  <div class="project-header">
+    <div class="header-top">
+      <span class="pstatus pstatus-active">Active</span>
+      <span class="dtag dtag-soft">Software</span>
+    </div>
+    <div class="project-title">Class Scheduler</div>
+    <div class="header-meta">
+      <div class="meta-item">
+        <span class="meta-label">Created</span>
+        <span class="meta-value">May 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Last updated</span>
+        <span class="meta-value">May 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Version</span>
+        <span class="meta-value">v1.2.1</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Overview / writeup ────────────────────────────────── -->
+  <div class="section">
+    <div class="section-heading">Overview</div>
+    <div class="writeup">
+      <p>Class Scheduler is a browser-only school scheduling tool. It runs entirely from a folder you can drop on a USB stick — no server, no accounts, no install. Open the HTML file and you're running. It accepts class and teacher data, generates up to 24 ranked candidate schedules using a priority-based placement algorithm, and packages the results as print-ready HTML and CSV files, all without touching a server.</p>
+
+      <h3>Background</h3>
+      <p>Every fall, my mother is tasked with building the master schedule at her small, private school. She starts by opening a very large spreadsheet — periods, rooms, teachers, grades. A teacher can't be in two places at once. A student can't take Algebra and English at the same period. The spreadsheet grows and something always conflicts. She described doing this by hand, by eye, printed out and checked on paper, for years. Class Scheduler is the tool I built to replace that process.</p>
+      <p>The first design constraint was the most important: it had to run anywhere, for anyone, with zero setup. A non-technical administrator should be able to deploy and trust it. That ruled out servers, accounts, and frameworks. The whole thing is vanilla HTML, CSS, and JavaScript. Data lives in memory while you work; a download button backs it up as a single JSON file at the end of a session.</p>
+
+      <h3>The Algorithm</h3>
+      <p>The scheduler is a priority-based heuristic. It places the highest-priority classes first, into the slot that minimizes conflict and maximizes teacher fit. No genetic algorithm, no integer linear programming — for datasets in the dozens-of-classes range, a well-tuned heuristic is fast and produces good results.</p>
+      <p>To get diverse outputs, each of the 24 candidate schedules starts from a fresh random shuffle of the class order before placement begins. Same algorithm, different starting order, meaningfully different schedules. The results are ranked by a weighted score and presented as a list so you can pick the one that fits your situation.</p>
+      <p>The part I'm most satisfied with is the <strong>credit type system</strong>. Two classes sharing a credit type — say, Algebra 1 and Algebra 2 — are treated as student alternatives: a grade-9 student picks one, not both, so they can legitimately share a period slot. Two classes with different credit types absolutely cannot share a period for the same grade. Getting this distinction right lets the scheduler pack a schedule significantly more efficiently than a naive "no two classes same period" rule, and it reflects how schools actually work.</p>
+
+      <h3>Data Entry</h3>
+      <p>The class matrix accepts paste directly from Excel. Copy a block in column order — ID, Name, Credit Type, Grades, Periods, Rooms, Priority — click anywhere in the table, and hit Ctrl+V. This matters because most administrators already have years of class data in a spreadsheet; retyping it would be a non-starter.</p>
+      <p>The Teacher × Class matrix works the same way. Cells are color-coded by suitability score (blank → red → amber → green → dark green), navigable by arrow keys, Tab, and Enter, and accept rectangular pastes from Excel. Meeting patterns let you specify that a class meets two or three days a week instead of five. The scheduler prefers non-consecutive day pairs — a 2-day class gets Tue/Thu or Mon/Fri over Tue/Wed — and violations show up as soft conflicts that drop the weighted score without blocking placement, so better-spread schedules surface first in the ranked list.</p>
+
+      <h3>Conflict Handling in v1.2.1</h3>
+      <p>Earlier versions produced schedules that <em>contained</em> hard conflicts — a teacher double-booked, a room oversubscribed. A conflict report listed them and you had to resolve them manually. That was a bad contract with the user: a schedule with a hard conflict isn't a schedule you can use.</p>
+      <p>v1.2.1 changes the philosophy. If a class cannot be placed without violating a hard constraint, it gets <strong>dropped</strong>. The Results page shows an Unschedulables panel listing every dropped class with a plain-English explanation:</p>
+      <ul>
+        <li><em>Teacher always booked</em> — every certified teacher was already placed in every slot this class could use</li>
+        <li><em>Room always booked</em> — every candidate room was taken in every eligible slot</li>
+        <li><em>Grade overlap unavoidable</em> — every slot already held a different-credit-type class for one of this class's grades</li>
+        <li><em>Teacher day cap reached</em> — every certified teacher hit their daily period cap on every available day</li>
+      </ul>
+      <p>More useful than the reason label is the slot-rejection breakdown — the per-constraint count of how many candidate slots each rule eliminated. If <code>room_always_booked</code> dominates, the room is oversubscribed. If <code>grade_overlap_unavoidable</code> dominates, too many distinct credit types are competing for that grade's periods. The diagnostic output tells you what to fix, not just that something failed.</p>
+
+      <h3>Download Package</h3>
+      <p>Clicking Download Package produces a <code>.zip</code> built entirely in-browser — no server-side zip generation, no external library. Inside:</p>
+      <ul>
+        <li><code>schedule_master.html</code> — per-grade master schedule</li>
+        <li><code>schedule_by_teacher.html</code> — one section per teacher</li>
+        <li><code>schedule_by_room.html</code> — one section per room</li>
+        <li><code>conflict_report.html</code> — full soft-conflict list</li>
+        <li><code>unschedulables.html</code> — dropped classes with diagnostics (print-ready)</li>
+        <li><code>schedule.csv</code> — flat CSV for Excel</li>
+        <li><code>schedule.json</code> — raw placement data, re-importable</li>
+      </ul>
+      <p>To make PDFs: open any HTML file, hit Ctrl+P, save as PDF. The print stylesheet handles page breaks on grade and teacher boundaries automatically. No PDF library required.</p>
+    </div>
+  </div>
+
+  <!-- ── Image gallery ─────────────────────────────────────── -->
+  <style>
+    .carousel { display: flex; flex-direction: column; gap: 10px; }
+
+    .carousel-main {
+      position: relative;
+      background: #141618;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px;
+      color: rgba(255,255,255,0.7);
+      font-size: 22px;
+      line-height: 1;
+      width: 36px;
+      height: 52px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, color 0.15s;
+      z-index: 1;
+    }
+    .carousel-btn:hover { background: rgba(0,0,0,0.75); color: #fff; }
+    .carousel-prev { left: 10px; }
+    .carousel-next { right: 10px; }
+
+    .carousel-thumbs {
+      display: flex;
+      gap: 10px;
+    }
+
+    .carousel-thumb {
+      flex: 1;
+      aspect-ratio: 16/9;
+      background: #141618;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.15s, opacity 0.15s;
+      opacity: 0.5;
+    }
+    .carousel-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .carousel-thumb:hover { opacity: 0.8; border-color: rgba(255,255,255,0.14); }
+    .carousel-thumb.active { border-color: rgba(255,255,255,0.4); opacity: 1; }
+  </style>
+
+  <div class="section">
+    <div class="section-heading">Images</div>
+    <div class="carousel">
+      <div class="carousel-main">
+        <button type="button" class="carousel-btn carousel-prev" onclick="cycleImg(-1)" aria-label="Previous image">&#8249;</button>
+        <img class="carousel-img" id="carousel-img" src="../assets/img/class-scheduler/Screenshot 2026-05-31 194634.png" alt="Class Scheduler interface">
+        <button type="button" class="carousel-btn carousel-next" onclick="cycleImg(1)" aria-label="Next image">&#8250;</button>
+      </div>
+      <div class="carousel-thumbs" id="carousel-thumbs">
+        <div class="carousel-thumb active" onclick="setImg(0)"><img src="../assets/img/class-scheduler/Screenshot 2026-05-31 194634.png" alt="Class Scheduler interface"></div>
+        <div class="carousel-thumb" onclick="setImg(1)"><img src="../assets/img/class-scheduler/Screenshot 2026-05-31 194716.png" alt="Class Scheduler interface"></div>
+        <div class="carousel-thumb" onclick="setImg(2)"><img src="../assets/img/class-scheduler/Screenshot 2026-05-31 194950.png" alt="Class Scheduler interface"></div>
+        <div class="carousel-thumb" onclick="setImg(3)"><img src="../assets/img/class-scheduler/Screenshot 2026-05-31 195018.png" alt="Class Scheduler interface"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const imgs = [
+      "../assets/img/class-scheduler/Screenshot 2026-05-31 194634.png",
+      "../assets/img/class-scheduler/Screenshot 2026-05-31 194716.png",
+      "../assets/img/class-scheduler/Screenshot 2026-05-31 194950.png",
+      "../assets/img/class-scheduler/Screenshot 2026-05-31 195018.png"
+    ];
+    let current = 0;
+
+    function setImg(idx) {
+      current = (idx + imgs.length) % imgs.length;
+      document.getElementById('carousel-img').src = imgs[current];
+      document.querySelectorAll('.carousel-thumb').forEach((t, i) => {
+        t.classList.toggle('active', i === current);
+      });
+    }
+
+    function cycleImg(dir) { setImg(current + dir); }
+  </script>
+
+  <!-- ── Changelog ─────────────────────────────────────────── -->
+  <div class="section pb-0">
+    <div class="section-heading">Changelog</div>
+    <div class="changelog-list">
+
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">2026-05-31</span>
+          <span class="cl-tag cl-software">Software</span>
+        </div>
+        <span class="cl-msg">v1.2.1 — Replaced hard-conflict schedules with drop-based placement; added Unschedulables panel with per-constraint slot-rejection diagnostics; added <code>unschedulables.html</code> and <code>unschedulables.json</code> to download package.</span>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">2026</span>
+          <span class="cl-tag cl-software">Software</span>
+        </div>
+        <span class="cl-msg">v1.1.0 — Added meeting patterns: 2-day and 3-day per week, with non-consecutive day preference enforced as a soft constraint.</span>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-left">
+          <span class="cl-date">2026</span>
+          <span class="cl-tag cl-software">Software</span>
+        </div>
+        <span class="cl-msg">v1.0.0 — Initial release. Priority-based heuristic scheduler, credit type system, Teacher × Class matrix, Excel paste support, in-browser zip generation.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="consult-bar">
+    <span class="c-text">Available for contract and consulting engagements</span>
+    <a class="c-link" href="../contact.html">Get in touch →</a>
+  </div>
+
+  <script src="../nav.js"></script>
+</body>
+</html>
